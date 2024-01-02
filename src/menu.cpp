@@ -1,85 +1,66 @@
 #include "../include/menu.h"
-#include <QPushButton>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QFile>
-#include <QTextStream>
 
-Menu::Menu(QWidget *parent) : QDialog(parent) {
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+Menu::Menu(QWidget *parent) : QWidget(parent) {
+    layout = new QVBoxLayout(this);
+    stackedWidget = new QStackedWidget(this);
+    startWidget = new Start(stackedWidget);
 
-    QLabel *label = new QLabel(this);
-    label->setFixedSize(600, 800);
+    // Widget for the menu
+    QWidget *menuWidget = new QWidget(this);
+    QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
 
-    mainLayout->addWidget(label);
-    mainLayout->addStretch();
-    setLayout(mainLayout);
+    startButton = createButton("Start", menuWidget);
+    startButton->setProperty("class", "startButton");
+    connect(startButton, &QPushButton::clicked, this, &Menu::buttonStartClick);
 
-    QFile styleFile("../src/css/menu.css");
+    exitButton = createButton("Exit", menuWidget);
+    exitButton->setProperty("class", "exitButton");
+    connect(exitButton, &QPushButton::clicked, this, &Menu::buttonExitClick);
 
-    if (styleFile.open(QFile::ReadOnly | QFile::Text)) {
-        QTextStream textStream(&styleFile);
-        QString styleSheet = textStream.readAll();
+    menuLayout->addWidget(startButton);
+    menuLayout->addWidget(exitButton);
+
+    stackedWidget->addWidget(menuWidget);
+    stackedWidget->addWidget(startWidget);
+
+    layout->addWidget(stackedWidget);
+
+    setFixedSize(600, 400);
+    setWindowTitle("F1 manager");
+    applyStylesheet("../src/css/menu.css");
+
+    connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
+}
+
+void Menu::createPage(const QString &title, int width, int height) {
+    QWidget *page = startWidget;
+    page->setFixedSize(width, height);
+    setWindowTitle(title);
+}
+
+void Menu::buttonStartClick() {
+    stackedWidget->setCurrentIndex(1); // Switch to the Start widget
+}
+
+void Menu::buttonExitClick() {
+    qApp->quit();
+}
+
+void Menu::buttonBackClick() {
+    stackedWidget->setCurrentIndex(0);
+}
+
+QPushButton* Menu::createButton(const QString &text, QWidget *parent) {
+    QPushButton *button = new QPushButton(text, parent);
+    return button;
+}
+
+void Menu::applyStylesheet(const QString &path) {
+    QFile styleFile(path);
+    if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&styleFile);
+        QString styleSheet = stream.readAll();
         setStyleSheet(styleSheet);
         styleFile.close();
     }
-}
-
-
-void Menu::createPage(const QString &nomFenetre, int hauteur, int largeur) {
-    QLabel *label = qobject_cast<QLabel*>(layout()->itemAt(0)->widget());
-    if (label) {
-        label->setFixedSize(largeur, hauteur);
-        setWindowTitle(nomFenetre);
-        ShowMenu();
-    }
-}
-
-void Menu::ShowMenu() {
-    createBoutonStart();
-    createBoutonSettings();
-    createBoutonExit();
-}
-
-void Menu::createBoutonExit() {
-    QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout*>(layout());
-
-    QHBoxLayout *exitLayout = new QHBoxLayout;
-    exitLayout->addStretch();
-    QPushButton *exitButton = new QPushButton("Exit", this);
-    exitButton->setObjectName("exitButton");
-    exitLayout->addWidget(exitButton);
-
-    mainLayout->addLayout(exitLayout);
-
-    connect(exitButton, &QPushButton::clicked, this, &Menu::close);
-}
-
-void Menu::createBoutonStart() {
-    QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout*>(layout());
-
-    QHBoxLayout *startLayout = new QHBoxLayout;
-    startLayout->addStretch();
-    QPushButton *startButton = new QPushButton("Start", this);
-    startButton->setObjectName("startButton");
-    startLayout->addWidget(startButton);
-
-    mainLayout->addLayout(startLayout);
-
-    connect(startButton, &QPushButton::clicked, this, &Menu::close);
-}
-
-void Menu::createBoutonSettings() {
-    QVBoxLayout *mainLayout = qobject_cast<QVBoxLayout*>(layout());
-
-    QHBoxLayout *settingsLayout = new QHBoxLayout;
-    settingsLayout->addStretch();
-    QPushButton *settingsButton = new QPushButton("Settings", this);
-    settingsButton->setObjectName("settingsButton");
-    settingsLayout->addWidget(settingsButton);
-
-    mainLayout->addLayout(settingsLayout);
-
-    connect(settingsButton, &QPushButton::clicked, this, &Menu::close);
 }

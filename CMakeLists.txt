@@ -9,11 +9,12 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-include_directories(ext/include)
-link_directories(ext/lib)
+include_directories("ext/include")
+link_directories("ext/lib")
 
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/css/*.css" "include/*.h")
 add_executable(F1_Game ${SOURCES}
+        src/start.cpp
         include/start.h)
 
 target_link_libraries(F1_Game PRIVATE ${CMAKE_SOURCE_DIR}/ext/lib/mysql/libmysql.dll)
