@@ -30,7 +30,7 @@ char **getAllPilots() {
     return pilots;
 }
 
-int selectPilot(MYSQL *conn, int pilot) {
+int selectPilot(int pilot) {
 
     /*
      * Permet de sélectionner un pilote
@@ -41,7 +41,7 @@ int selectPilot(MYSQL *conn, int pilot) {
     char **pilots = getAllPilots();
     printf("Vous avez sélectionné le pilote %s\n", pilots[pilot]);
 
-    if (addPlayer(conn, pilots[pilot], 0) == 1) {
+    if (addPlayer(pilots[pilot], 0) == 1) {
         return 1;
     }
 
