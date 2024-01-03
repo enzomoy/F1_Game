@@ -14,9 +14,11 @@ public:
 
 signals:
     void backClicked();
+    void driverSelected(int driverIndex);  // Correction ici
 
 private slots:
     void buttonBackClick();
+    void onDriverButtonClicked();
 
 private:
     QVBoxLayout *layout;
