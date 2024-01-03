@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include "pilots_fonctions.h"
 
 class Start : public QWidget {
 Q_OBJECT
@@ -21,8 +22,9 @@ private:
     QVBoxLayout *layout;
     QLabel *label;
     QPushButton *backButton;
+    QPushButton *driversButton;
 
-    QPushButton* createButton(const QString &text, QWidget *parent);  // Ajout de la déclaration
+    QPushButton* createButton(const QString &text, QWidget *parent);
 };
 
 #endif // START_H

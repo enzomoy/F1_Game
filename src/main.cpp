@@ -14,8 +14,6 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     Menu menu;
 
-    //menu.createPage("F1 manager", 600, 400);
-
     menu.show();
 
     return a.exec();

@@ -5,7 +5,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
 
-    // Widget for the menu
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
 
