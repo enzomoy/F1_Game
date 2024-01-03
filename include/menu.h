@@ -7,8 +7,9 @@
 #include <QStackedWidget>
 #include <QApplication>
 #include "start.h"
-#include <QFile>
-#include <QTextStream>
+
+
+class Circuit;  // Déclaration avancée pour éviter une dépendance circulaire
 
 class Menu : public QWidget {
 Q_OBJECT
@@ -20,6 +21,8 @@ private slots:
     void buttonStartClick();
     void buttonExitClick();
     void buttonBackClick();
+    void onDriverSelected(int driverIndex);
+    void buttonCircuitBackClick();
 
 private:
     QVBoxLayout *layout;
@@ -27,6 +30,7 @@ private:
     QPushButton *startButton;
     QPushButton *exitButton;
     Start *startWidget;
+    Circuit *circuitWidget;
 
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);

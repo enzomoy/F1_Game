@@ -17,12 +17,8 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 include_directories("ext/include")
 link_directories("ext/lib")
 
-file(GLOB_RECURSE SOURCES "src/.cpp*" "src/.c*" "src/css/*.css" "include/*.h")
-add_executable(F1_Game ${SOURCES}
-        src/start.cpp
-        src/menu.cpp
-        src/main.cpp
-        src/pilots_fonctions.c)
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c" "src/css/*.css" "include/*.h")
+add_executable(F1_Game ${SOURCES})
 
 target_link_libraries(F1_Game PRIVATE ${CMAKE_SOURCE_DIR}/ext/lib/mysql/libmysql.dll)
 target_link_libraries(F1_Game PRIVATE ${CMAKE_SOURCE_DIR}/ext/lib/curl/libcurl.dll.a)

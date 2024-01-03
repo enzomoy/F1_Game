@@ -1,9 +1,12 @@
 #include "../include/menu.h"
+#include <QFile>
+#include "../include/circuit.h"
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
+    circuitWidget = new Circuit(stackedWidget);
 
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
@@ -21,6 +24,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     stackedWidget->addWidget(menuWidget);
     stackedWidget->addWidget(startWidget);
+    stackedWidget->addWidget(circuitWidget);
 
     layout->addWidget(stackedWidget);
 
@@ -29,6 +33,9 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     applyStylesheet("../src/css/menu.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
+    connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
+
+    connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
 }
 
 void Menu::createPage(const QString &title, int width, int height) {
@@ -38,7 +45,7 @@ void Menu::createPage(const QString &title, int width, int height) {
 }
 
 void Menu::buttonStartClick() {
-    stackedWidget->setCurrentIndex(1); // Switch to the Start widget
+    stackedWidget->setCurrentIndex(1);
 }
 
 void Menu::buttonExitClick() {
@@ -47,6 +54,14 @@ void Menu::buttonExitClick() {
 
 void Menu::buttonBackClick() {
     stackedWidget->setCurrentIndex(0);
+}
+
+void Menu::onDriverSelected(int driverIndex) {
+    stackedWidget->setCurrentIndex(2);
+}
+
+void Menu::buttonCircuitBackClick() {
+    stackedWidget->setCurrentIndex(1);
 }
 
 QPushButton* Menu::createButton(const QString &text, QWidget *parent) {

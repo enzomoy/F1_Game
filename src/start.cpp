@@ -21,12 +21,14 @@ Start::Start(QWidget *parent) : QWidget(parent) {
             x = 37;
             y += 50;
         }
+        connect(driversButton, &QPushButton::clicked, this, &Start::onDriverButtonClicked);
     }
 
     layout->addWidget(label);
     layout->addWidget(backButton);
-
-    connect(backButton, &QPushButton::clicked, this, &Start::buttonBackClick);
+    if (&QPushButton::clicked) {
+        connect(backButton, &QPushButton::clicked, this, &Start::buttonBackClick);
+    }
 }
 
 void Start::buttonBackClick() {
@@ -36,4 +38,12 @@ void Start::buttonBackClick() {
 QPushButton* Start::createButton(const QString &text, QWidget *parent) {
     QPushButton *button = new QPushButton(text, parent);
     return button;
+}
+
+void Start::onDriverButtonClicked() {
+    QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
+    if (senderButton) {
+        int driverIndex = senderButton->text().toInt();
+        emit driverSelected(driverIndex);
+    }
 }

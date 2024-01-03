@@ -1,5 +1,4 @@
 .startButton {
-    color: black;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -9,7 +8,6 @@
 }
 
 .exitButton{
-    color: black;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -19,7 +17,6 @@
 }
 
 .backButton{
-    color: black;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -38,4 +35,8 @@
 .driversButton{
     background-color: grey;
     border-radius: 5%;
+}
+
+.buttonCircuitBackClick{
+    background-color: lightcoral;
 }
