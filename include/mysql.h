@@ -9,6 +9,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int dbConnect();
+#include <time.h>
+
+typedef struct {
+    char *server;
+    char *user;
+    char *password;
+    char *database;
+} db_config;
+
+MYSQL *dbConnect(db_config *config);
+int addPlayer(MYSQL* conn, const char* pilot, int score);
 
 #endif //F1_GAME_MYSQL_H
