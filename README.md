@@ -1,4 +1,6 @@
-![MYSQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)  [![SDL](https://img.shields.io/badge/SDL-lightblue)](https://SDL.com/)
+![MYSQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)  ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+ ![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)
+
 
 # Présentation
 Le projet F1 manager est un jeux de simulation de gestion des voiture de Formule 1 avec la possibilité de manager la voiture sélectionnée par l’utilisateur à sa guise avec la gestion des pneumatique , temps au tours et par secteur , planification des arrêts au stand et d’autre encore
