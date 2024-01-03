@@ -8,7 +8,7 @@
 #include <string.h>
 
 char **getAllPilots();
-int selectPilot(MYSQL *conn, int pilot);
+int selectPilot(int pilot);
 
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H
