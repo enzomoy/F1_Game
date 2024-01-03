@@ -5,10 +5,10 @@
 #include "../include/mysql.h"
 
 DbConnectionInfo globalDbConnection = {
-        .server = "localhost",
-        .user = "user",
-        .password = "Azerty11",
-        .database = "f1_project",
+        .server = (char *)"localhost",
+        .user = (char *)"user",
+        .password = (char *)"Azerty11",
+        .database = (char *)"f1_project",
         .connection = NULL
 };
 

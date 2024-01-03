@@ -8,12 +8,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     startWidget = new Start(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
 
-    // Initialisation de la bdd
-    if (dbConnect(&globalDbConnection) == 1) {
-        printf("Erreur de connexion à la base de données");
-        exit(1);
-    }
-
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
 

@@ -24,6 +24,13 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         connect(driversButton, &QPushButton::clicked, this, &Start::onDriverButtonClicked);
     }
 
+    // Initialisation de la bdd
+    if (dbConnect(&globalDbConnection) == 1) {
+        printf("Erreur de connexion à la base de données");
+        exit(1);
+    }
+    selectPilot(0);
+
     layout->addWidget(label);
     layout->addWidget(backButton);
     if (&QPushButton::clicked) {
