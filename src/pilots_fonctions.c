@@ -29,3 +29,21 @@ char **getAllPilots() {
 
     return pilots;
 }
+
+int selectPilot(MYSQL *conn, int pilot) {
+
+    /*
+     * Permet de sélectionner un pilote
+     * Retourne 0 si la sélection est réussie
+     * Retourne 1 si la sélection est échouée
+     */
+
+    char **pilots = getAllPilots();
+    printf("Vous avez sélectionné le pilote %s\n", pilots[pilot]);
+
+    if (addPlayer(conn, pilots[pilot], 0) == 1) {
+        return 1;
+    }
+
+    return 0;
+}
