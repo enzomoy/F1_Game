@@ -86,6 +86,8 @@ int removePlayer(int id) {
         if (mysql_query(globalDbConnection.connection, query) != 0) {
             return 1;
         }
+
+        printf("Le joueur %d a été supprime\n", id);
         return 0;
 }
 
