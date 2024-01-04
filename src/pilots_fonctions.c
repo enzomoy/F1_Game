@@ -39,9 +39,35 @@ int selectPilot(int pilot) {
      */
 
     char **pilots = getAllPilots();
-    printf("Vous avez sélectionné le pilote %s\n", pilots[pilot]);
+    printf("Vous avez selectionne le pilote %s\n", pilots[pilot]);
 
     if (addPlayer(pilots[pilot], 0) == 1) {
+        return 1;
+    }
+
+    return 0;
+}
+
+int addScoreToPlayer(int playerId, int addedScore) {
+
+    /*
+     * Permet de mettre à jour le score d'un joueur
+     * Retourne 0 si la mise à jour est réussie
+     * Retourne 1 si la mise à jour est échouée
+     */
+
+    // Récupération du score actuel du joueur
+    int score = getScore(playerId);
+    if (score == -1) {
+        return 1;
+    }
+    int lastScore = score;
+
+    score += addedScore;
+
+    printf("Le score du joueur %d est de %d (anciennement %d)\n", playerId, score, lastScore);
+
+    if (updatePlayerScore(playerId, score) == 1) {
         return 1;
     }
 
