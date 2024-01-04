@@ -48,7 +48,7 @@ int selectPilot(int pilot) {
     return 0;
 }
 
-int addScoreToPlayer(int playerId, int addedScore) {
+int addScore(int playerId, int addedScore) {
 
     /*
      * Permet de mettre à jour le score d'un joueur
@@ -67,7 +67,7 @@ int addScoreToPlayer(int playerId, int addedScore) {
 
     printf("Le score du joueur %d est de %d (anciennement %d)\n", playerId, score, lastScore);
 
-    if (updatePlayerScore(playerId, score) == 1) {
+    if (setScore(playerId, score) == 1) {
         return 1;
     }
 

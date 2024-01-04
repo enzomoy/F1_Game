@@ -89,7 +89,7 @@ int removePlayer(int id) {
         return 0;
 }
 
-int updatePlayerScore(int id, int score) {
+int setScore(int id, int score) {
 
         /*
         * Permet de mettre à jour le score d'un joueur
