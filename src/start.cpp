@@ -32,8 +32,9 @@ Start::Start(QWidget *parent) : QWidget(parent) {
 
     /////////////////////////////////////////////
     // Fonction de test
-    selectPilot(0);
-    addScoreToPlayer(5, 100);
+    selectPilot(1);
+    addScore(6, 100);
+    removePlayer(6);
     /////////////////////////////////////////////
 
     layout->addWidget(label);
