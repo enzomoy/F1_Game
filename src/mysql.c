@@ -90,7 +90,6 @@ int removePlayer(int id) {
 }
 
 int setScore(int id, int score) {
-
         /*
         * Permet de mettre à jour le score d'un joueur
         * Retourne 0 si la mise à jour est réussie
