@@ -9,6 +9,6 @@
 
 char **getAllPilots();
 int selectPilot(int pilot);
-
+int addScoreToPlayer(int playerId, int addedScore);
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H

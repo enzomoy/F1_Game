@@ -23,5 +23,7 @@ extern DbConnectionInfo globalDbConnection;
 
 int dbConnect(DbConnectionInfo *config);
 int addPlayer(const char* pilot, int score);
+int updatePlayerScore(int id, int score);
+int getScore(int id);
 
 #endif //F1_GAME_MYSQL_H
