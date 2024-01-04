@@ -32,9 +32,15 @@ Start::Start(QWidget *parent) : QWidget(parent) {
 
     /////////////////////////////////////////////
     // Fonction de test
-    selectPilot(1);
-    addScore(6, 100);
-    removePlayer(6);
+    if (selectPilot(1) == 1) {
+        printf("Erreur de selection du pilote\n");
+    }
+    if (addScore(7, 100) == 1) {
+        printf("Erreur d'ajout du score\n");
+    }
+    if (removePlayer(1) == 1) {
+        printf("Erreur de suppression du joueur\n");
+    }
     /////////////////////////////////////////////
 
     layout->addWidget(label);

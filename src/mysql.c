@@ -81,11 +81,22 @@ int removePlayer(int id) {
 
         char query[1000];
 
+        // Vérification de l'existence du joueur
+        snprintf(query, sizeof(query), "SELECT * FROM player WHERE id = %d", id);
+
+        if (mysql_query(globalDbConnection.connection, query) != 0) {
+            return 1;
+        }
+
+        // Suppression du joueur
+
         snprintf(query, sizeof(query), "DELETE FROM player WHERE id = %d", id);
 
         if (mysql_query(globalDbConnection.connection, query) != 0) {
             return 1;
         }
+
+        printf("Le joueur %d a ete supprime\n", id);
         return 0;
 }
 
