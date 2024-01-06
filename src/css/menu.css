@@ -44,17 +44,16 @@
 }
 
 .circuit1{
-    background-color:#111111;
     margin-top: 20%;
-
+    background-image:url('../src/img/monza.png');
 }
 
 .circuit2{
     margin-top: 20%;
-    background-color:#111111;
+    background-image:url('../src/img/baku.png');
 }
 
 .circuit3{
     margin-top: 20px;
-    background-color:#111111;
+    background-image:url('../src/img/spain.png');
 }
