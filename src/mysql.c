@@ -64,6 +64,7 @@ int addPlayer(const char* pilot, int score) {
     if (mysql_query(globalDbConnection.connection, query) != 0) {
         return 1;
     }
+    mysql_free_result(mysql_store_result(globalDbConnection.connection));
     return 0;
 }
 
@@ -97,6 +98,7 @@ int removePlayer(int id) {
         }
 
         printf("Le joueur %d a ete supprime\n", id);
+        mysql_free_result(mysql_store_result(globalDbConnection.connection));
         return 0;
 }
 
@@ -118,6 +120,9 @@ int setScore(int id, int score) {
         if (mysql_query(globalDbConnection.connection, query) != 0) {
             return 1;
         }
+
+        mysql_free_result(mysql_store_result(globalDbConnection.connection));
+
         return 0;
 }
 
@@ -156,4 +161,96 @@ int getScore(int id) {
             mysql_free_result(result);
 
             return score;
+}
+
+char ***getAllCircuits() {
+
+    /*
+    * Permet de récupérer tous les circuits
+    * Retourne un tableau de char*** si la récupération est réussie
+    * Retourne NULL si la récupération est échouée
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return NULL;
+    }
+
+    char query[1000];
+    snprintf(query, sizeof(query), "SELECT * FROM circuits");
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    MYSQL_RES *result = mysql_use_result(globalDbConnection.connection);
+    if (result == NULL) {
+        return NULL;
+    }
+
+    char ***circuits = (char ***)malloc(3 * sizeof(char**));
+    for (int i = 0; i < 100; i++) {
+        circuits[i] = (char **)malloc(15 * sizeof(char*));
+        for (int j = 0; j < 5; j++) {
+            circuits[i][j] = (char *)malloc(100 * sizeof(char));
+        }
+    }
+
+    // Obtenez le nombre de colonnes dans le résultat
+    int num_fields = mysql_num_fields(result);
+
+    // Parcourez toutes les lignes du résultat
+    MYSQL_ROW row;
+    int i = 0;
+
+    while ((row = mysql_fetch_row(result)) != NULL && i < 100) {
+        for (int j = 0; j < num_fields; j++) {
+            strcpy(circuits[i][j], row[j]);
+        }
+        i++;
+    }
+
+    // Libérez le résultat
+    mysql_free_result(result);
+
+    return circuits;
+
+}
+
+int getCircuitsName(int id) {
+
+        /*
+        * Permet de récupérer le nom d'un circuit
+        * Retourne le score si la récupération est réussie
+        * Retourne NULL si la récupération est échouée
+        */
+
+        if (globalDbConnection.connection == NULL) {
+            return -1;
+        }
+
+        char query[1000];
+
+        snprintf(query, sizeof(query), "SELECT id FROM player WHERE circuit_id = %d", id);
+
+        if (mysql_query(globalDbConnection.connection, query) != 0) {
+            fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));
+            return -1;
+        }
+
+        MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+        if (result == NULL) {
+            return -1;
+        }
+
+        MYSQL_ROW row = mysql_fetch_row(result);
+        if (row == NULL) {
+            return -1;
+        }
+
+        int idCircuit = atoi(row[0]);
+
+        mysql_free_result(result);
+
+        return idCircuit;
 }
