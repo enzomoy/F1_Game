@@ -42,7 +42,6 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         printf("Erreur de suppression du joueur\n");
     }
     /////////////////////////////////////////////
-
     layout->addWidget(label);
     layout->addWidget(backButton);
     if (&QPushButton::clicked) {
