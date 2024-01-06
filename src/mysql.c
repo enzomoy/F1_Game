@@ -9,7 +9,6 @@ DbConnectionInfo globalDbConnection = {
         .user = "user",
         .password = "Azerty11",
         .database = "f1_project",
-        .connection = NULL
 };
 
 int dbConnect(DbConnectionInfo *config) {

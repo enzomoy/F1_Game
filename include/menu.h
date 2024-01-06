@@ -9,7 +9,7 @@
 #include "start.h"
 
 
-class Circuit;  // Déclaration avancée pour éviter une dépendance circulaire
+class Circuit;
 
 class Menu : public QWidget {
 Q_OBJECT
@@ -36,4 +36,4 @@ private:
     void applyStylesheet(const QString &path);
 };
 
-#endif // MENU_H
+#endif

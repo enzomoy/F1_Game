@@ -63,6 +63,7 @@ void Menu::buttonBackClick() {
 }
 
 void Menu::onDriverSelected(int driverIndex) {
+    selectPilot(driverIndex);
     stackedWidget->setCurrentIndex(2);
 }
 
