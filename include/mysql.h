@@ -30,6 +30,7 @@ int getScore(int id);
 
 // Circuit prototypes
 char ***getAllCircuits();
-int getCircuitsName(int id);
+char *getCircuitsName(int id);
+void freeCircuits(char ***circuits);
 
 #endif //F1_GAME_MYSQL_H

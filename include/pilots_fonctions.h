@@ -8,6 +8,7 @@
 #include <string.h>
 
 char **getAllPilots();
+void freePilots(char** pilots);
 int selectPilot(int pilot);
 int addScore(int playerId, int addedScore);
 
