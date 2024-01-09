@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include "pilots_fonctions.h"
+#include "circuits_fonctions.h"
 
 class Start : public QWidget {
 Q_OBJECT

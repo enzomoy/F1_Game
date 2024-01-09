@@ -64,5 +64,226 @@ int addPlayer(const char* pilot, int score) {
     if (mysql_query(globalDbConnection.connection, query) != 0) {
         return 1;
     }
+
     return 0;
+}
+
+int removePlayer(int id) {
+    /*
+    * Permet de supprimer un joueur de la base de données
+    * Retourne 0 si la suppression est réussie
+    * Retourne 1 si la suppression est échouée
+    * Retourne 2 si le joueur n'existe pas
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return 1;
+    }
+
+    char query[1000];
+
+    // Vérification de l'existence du joueur
+    snprintf(query, sizeof(query), "SELECT * FROM player WHERE id = %d", id);
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));
+        return 1;
+    }
+
+    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+
+    // Si le joueur n'existe pas
+    if (result == NULL || mysql_num_rows(result) == 0) {
+        mysql_free_result(result);
+        return 2;
+    }
+
+    // Libération des résultats de la première requête SELECT
+    mysql_free_result(result);
+
+    // Suppression du joueur
+    snprintf(query, sizeof(query), "DELETE FROM player WHERE id = %d", id);
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));
+        return 1;
+    }
+
+    return 0;
+}
+
+int setScore(int id, int score) {
+        /*
+        * Permet de mettre à jour le score d'un joueur
+        * Retourne 0 si la mise à jour est réussie
+        * Retourne 1 si la mise à jour est échouée
+        */
+
+        if (globalDbConnection.connection == NULL) {
+            return 1;
+        }
+
+        char query[1000];
+
+        snprintf(query, sizeof(query), "UPDATE player SET score = %d WHERE id = %d", score, id);
+
+        if (mysql_query(globalDbConnection.connection, query) != 0) {
+            return 1;
+        }
+
+        return 0;
+}
+
+int getScore(int id) {
+    /*
+    * Permet de récupérer le score d'un joueur
+    * Retourne le score si la récupération est réussie
+    * Retourne -1 si la récupération est échouée
+    * Retourne -2 si le joueur n'existe pas
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return -1;
+    }
+
+    char query[1000];
+
+    snprintf(query, sizeof(query), "SELECT score FROM player WHERE id = %d", id);
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        return -1;
+    }
+
+    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+
+    // Si le joueur n'existe pas
+    if (result == NULL || mysql_num_rows(result) == 0) {
+        mysql_free_result(result);
+        return -2;
+    }
+
+    MYSQL_ROW row = mysql_fetch_row(result);
+    int score = atoi(row[0]);
+
+    mysql_free_result(result);
+
+    return score;
+}
+
+char *getCircuitsName(int id) {
+    /*
+    * Permet de récupérer le nom d'un circuit à partir de son ID
+    * Retourne le nom du circuit si la récupération est réussie
+    * Retourne NULL si la récupération est échouée ou si le circuit n'existe pas
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return NULL;
+    }
+
+    char query[1000];
+
+    snprintf(query, sizeof(query), "SELECT nom FROM circuits WHERE circuit_id = %d", id);
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "Erreur lors de la requête : %s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+
+    // Si le circuit n'existe pas
+    if (result == NULL || mysql_num_rows(result) == 0) {
+        mysql_free_result(result);
+        return NULL;
+    }
+
+    MYSQL_ROW row = mysql_fetch_row(result);
+    char *name = strdup(row[0]);
+
+    if (name == NULL) {
+        fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+        mysql_free_result(result);
+        return NULL;
+    }
+
+    mysql_free_result(result);
+
+    return name;
+}
+
+char ***getAllCircuits() {
+    /*
+    * Permet de récupérer toutes les informations sur tous les circuits
+    * Retourne un tableau de char*** si la récupération est réussie
+    * Retourne NULL si la récupération est échouée
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return NULL;
+    }
+
+    char query[1000];
+    snprintf(query, sizeof(query), "SELECT * FROM circuits");
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "Erreur lors de la requête : %s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+
+    if (result == NULL) {
+        fprintf(stderr, "Erreur lors de la récupération des circuits : %s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    int num_fields = mysql_num_fields(result); // nombre de colonnes dans le résultat
+
+    char ***circuits = (char ***)malloc((mysql_num_rows(result) + 1) * sizeof(char **));
+    if (circuits == NULL) {
+        fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+        mysql_free_result(result);
+        return NULL;
+    }
+
+    int i = 0;
+
+    // Parcourss des lignes du résultat
+    MYSQL_ROW row;
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        circuits[i] = (char **)malloc(num_fields * sizeof(char *));
+        if (circuits[i] == NULL) {
+            fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+            mysql_free_result(result);
+            freeCircuits(circuits);
+            return NULL;
+        }
+
+        for (int j = 0; j < num_fields; j++) {
+            circuits[i][j] = strdup(row[j]);
+            if (circuits[i][j] == NULL) {
+                fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+                mysql_free_result(result);
+                freeCircuits(circuits);
+                return NULL;
+            }
+        }
+        i++;
+    }
+
+    circuits[i] = NULL; // Fin du tableau
+    mysql_free_result(result);
+
+    return circuits;
+}
+
+void freeCircuits(char ***circuits) {
+    for (int i = 0; circuits[i] != NULL; i++) {
+        for (int j = 0; circuits[i][j] != NULL; j++) {
+            free(circuits[i][j]);
+        }
+        free(circuits[i]);
+    }
+    free(circuits);
 }
