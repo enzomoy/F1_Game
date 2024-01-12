@@ -30,6 +30,14 @@ char **getAllPilots() {
     return pilots;
 }
 
+void freePilots(char** pilots) {
+    for (int i = 0; i < 20; i++) {
+        free(pilots[i]);
+    }
+    free(pilots);
+}
+
+
 int selectPilot(int pilot) {
 
     /*
@@ -39,9 +47,40 @@ int selectPilot(int pilot) {
      */
 
     char **pilots = getAllPilots();
-    printf("Vous avez sélectionné le pilote %s\n", pilots[pilot]);
+    printf("Vous avez selectionne le pilote %s\n", pilots[pilot]);
 
     if (addPlayer(pilots[pilot], 0) == 1) {
+        return 1;
+    }
+
+    freePilots(pilots);
+    return 0;
+}
+
+int addScore(int playerId, int addedScore) {
+    /*
+     * Permet de mettre à jour le score d'un joueur
+     * Retourne 0 si la mise à jour est réussie
+     * Retourne 1 si la mise à jour est échouée
+     * Retourne 2 si le joueur n'existe pas
+     */
+
+    // Récupération du score actuel du joueur
+    int score = getScore(playerId);
+    switch (score) {
+        case -1:
+            return 1;
+        case -2:
+            return 2;
+    }
+
+    int lastScore = score;
+
+    score += addedScore;
+
+    printf("Le score du joueur %d est de %d (anciennement %d)\n", playerId, score, lastScore);
+
+    if (setScore(playerId, score) == 1) {
         return 1;
     }
 

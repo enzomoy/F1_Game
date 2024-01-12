@@ -21,7 +21,16 @@ typedef struct {
 
 extern DbConnectionInfo globalDbConnection;
 
+// Player prototypes
 int dbConnect(DbConnectionInfo *config);
 int addPlayer(const char* pilot, int score);
+int removePlayer(int id);
+int setScore(int id, int score);
+int getScore(int id);
+
+// Circuit prototypes
+char ***getAllCircuits();
+char *getCircuitsName(int id);
+void freeCircuits(char ***circuits);
 
 #endif //F1_GAME_MYSQL_H
