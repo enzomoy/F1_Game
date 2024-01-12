@@ -12,7 +12,6 @@ Start::Start(QWidget *parent) : QWidget(parent) {
     int y = 100;
     char **pilots = getAllPilots();
     for (int i = 0; i < 20; i++) {
-        printf("%s \n", pilots[i]);
         driversButton = createButton(pilots[i], this);
         driversButton->setProperty("class", "driversButton");
         driversButton->setGeometry(x, y, 99 , 30);
@@ -21,7 +20,9 @@ Start::Start(QWidget *parent) : QWidget(parent) {
             x = 37;
             y += 50;
         }
-        connect(driversButton, &QPushButton::clicked, this, &Start::onDriverButtonClicked);
+        connect(driversButton, &QPushButton::clicked, this, [this, i]() {
+            onDriverButtonClicked(i);
+        });
     }
 
     // Initialisation de la bdd
@@ -60,10 +61,6 @@ QPushButton* Start::createButton(const QString &text, QWidget *parent) {
     return button;
 }
 
-void Start::onDriverButtonClicked() {
-    QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
-    if (senderButton) {
-        int driverIndex = senderButton->text().toInt();
-        emit driverSelected(driverIndex);
-    }
+void Start::onDriverButtonClicked(int driverIndex) {
+    emit driverSelected(driverIndex);
 }

@@ -14,6 +14,7 @@
     margin: 4px 2px;
     margin-left: 20%;
     margin-right: 20%;
+    background-color: lightcoral;
 }
 
 .backButton{
@@ -23,6 +24,7 @@
     margin: 4px 2px;
     margin-left: 20%;
     margin-right: 20%;
+    background-color: lightcoral;
 }
 
 .selectDrivers{
@@ -39,4 +41,19 @@
 
 .buttonCircuitBackClick{
     background-color: lightcoral;
+}
+
+.circuit1{
+    margin-top: 20%;
+    background-image:url('../src/img/monza.png');
+}
+
+.circuit2{
+    margin-top: 20%;
+    background-image:url('../src/img/baku.png');
+}
+
+.circuit3{
+    margin-top: 20px;
+    background-image:url('../src/img/spain.png');
 }
