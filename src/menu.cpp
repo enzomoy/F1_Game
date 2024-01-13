@@ -1,11 +1,11 @@
 #include "../include/menu.h"
 #include <QFile>
-#include "../include/circuit.h"
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
+    settingsWidget = new Settings(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
 
     QWidget *menuWidget = new QWidget(this);
@@ -14,6 +14,10 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     startButton = createButton("Start", menuWidget);
     startButton->setProperty("class", "startButton");
     connect(startButton, &QPushButton::clicked, this, &Menu::buttonStartClick);
+
+    settingsButton = createButton("Settings", menuWidget);
+    settingsButton->setProperty("class", "settingsButton");
+    connect(settingsButton, &QPushButton::clicked, this, &Menu::buttonSettingsClick);
 
     exitButton = createButton("Exit", menuWidget);
     exitButton->setProperty("class", "exitButton");
@@ -25,6 +29,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget->addWidget(menuWidget);
     stackedWidget->addWidget(startWidget);
     stackedWidget->addWidget(circuitWidget);
+    stackedWidget->addWidget(settingsWidget);
 
     layout->addWidget(stackedWidget);
 
@@ -34,7 +39,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
-
+    connect(settingsWidget, &Settings::backClicked, this, &Menu::buttonBackClick);
     connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
 }
 
@@ -52,12 +57,15 @@ void Menu::buttonExitClick() {
     qApp->quit();
 }
 
+void Menu::buttonSettingsClick() {
+    stackedWidget->setCurrentIndex(3);
+}
+
 void Menu::buttonBackClick() {
     stackedWidget->setCurrentIndex(0);
 }
 
 void Menu::onDriverSelected(int driverIndex) {
-    selectPilot(driverIndex);
     stackedWidget->setCurrentIndex(2);
 }
 
