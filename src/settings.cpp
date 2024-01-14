@@ -2,6 +2,7 @@
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QVBoxLayout>
+#include <QLabel>
 
 Settings::Settings(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
@@ -9,16 +10,27 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
     QCheckBox *checkBox = createCheckBox("Fullscreen");
     layout->addWidget(checkBox);
 
+    label1 = new QLabel("X : ", this);
+    label1->setProperty("class", "printX");
+    layout->addWidget(label1);
+
     Xlen = new QLineEdit(this);
+    Xlen->setProperty("class","Xinput");
     layout->addWidget(Xlen);
 
+    label2 = new QLabel("Y : ", this);
+    label2->setProperty("class", "printY");
+    layout->addWidget(label2);
+
     Ylen = new QLineEdit(this);
+    Ylen->setProperty("class","Yinput");
     layout->addWidget(Ylen);
 
     bool isChecked = isCheckBoxChecked();
 
     apply = createButton("Appliquer", this);
     apply->setProperty("class", "Appliquer");
+    layout->addWidget(apply);
 
     QPushButton *backButtonSettings = createButton("Back", this);
     backButtonSettings->setProperty("class", "backButtonSettings");

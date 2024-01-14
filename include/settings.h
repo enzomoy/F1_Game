@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QLineEdit>
+#include <QLabel>
 
 class Settings : public QWidget {
 Q_OBJECT
@@ -28,6 +29,8 @@ private:
     QPushButton *apply;
     QLineEdit* Xlen;
     QLineEdit* Ylen;
+    QLabel *label1;
+    QLabel *label2;
 };
 
 #endif
