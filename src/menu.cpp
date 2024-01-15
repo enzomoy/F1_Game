@@ -1,3 +1,4 @@
+// menu.cpp
 #include "../include/menu.h"
 #include <QFile>
 
@@ -5,8 +6,13 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
-    settingsWidget = new Settings(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
+
+    // Créez d'abord l'objet settingsWidget
+    settingsWidget = new Settings(stackedWidget);
+
+    // Connectez ensuite le signal applied
+    connectSignals();
 
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
@@ -86,4 +92,13 @@ void Menu::applyStylesheet(const QString &path) {
         setStyleSheet(styleSheet);
         styleFile.close();
     }
+}
+
+void Menu::onSettingsApplied() {
+    close();
+    show();
+}
+
+void Menu::connectSignals() {
+    connect(settingsWidget, &Settings::applied, this, &Menu::onSettingsApplied);
 }

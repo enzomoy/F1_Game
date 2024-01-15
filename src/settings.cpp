@@ -36,6 +36,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
     backButtonSettings->setProperty("class", "backButtonSettings");
     layout->addWidget(backButtonSettings);
 
+    connect(apply, &QPushButton::clicked, this, &Settings::buttonApplyClick);
     connect(backButtonSettings, &QPushButton::clicked, this, &Settings::buttonBackClick);
 
 }
@@ -65,6 +66,10 @@ QString Settings::getXlen() const {
 
 QString Settings::getYlen() const {
     return Ylen->text();
+}
+
+void Settings::buttonApplyClick() {
+    emit applied();
 }
 
 void Settings::buttonBackClick() {

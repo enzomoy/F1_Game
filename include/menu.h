@@ -1,3 +1,4 @@
+// menu.h
 #ifndef MENU_H
 #define MENU_H
 
@@ -23,6 +24,7 @@ private slots:
     void buttonBackClick();
     void onDriverSelected(int driverIndex);
     void buttonCircuitBackClick();
+    void onSettingsApplied();
 
 private:
     QVBoxLayout *layout;
@@ -36,6 +38,8 @@ private:
 
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);
+    void connectSignals();
+
 };
 
 #endif

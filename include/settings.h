@@ -17,10 +17,12 @@ public:
     QString getYlen() const;
 
 public slots:
+    void buttonApplyClick();
     void buttonBackClick();
 
 signals:
     void backClicked();
+    void applied();
 
 private:
     QVBoxLayout *layout;
