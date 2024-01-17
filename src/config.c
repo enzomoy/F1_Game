@@ -125,7 +125,100 @@ int strToBool(char *str) {
     } else if (strcmp(str, "false") == 0) {
         return 0;
     } else {
-        fprintf(stderr, "Erreur lors de la conversion de la chaine de caractère en booléen\n");
+        fprintf(stderr, "Erreur lors de la conversion de la chaine de caractère en bool\n");
         return -1;
+    }
+}
+
+int configSettings(Config *config, int fullscreen, int width, int height) {
+
+    /*
+     * Permet de modifier les paramètres de la structure Config
+     * Retourne 0 si la modification s'est bien déroulée
+     * Retourne 1 si la modification a échouée
+     */
+
+    if (fullscreen != -1) {
+        config->fullscreen = fullscreen;
+    } else {
+        fprintf(stderr, "Erreur lors de la modification du paramètre fullscreen\n");
+        return 1;
+    }
+
+    if (width != -1) {
+        config->width = width;
+    } else {
+        fprintf(stderr, "Erreur lors de la modification du paramètre width\n");
+        return 1;
+    }
+
+    if (height != -1) {
+        config->height = height;
+    } else {
+        fprintf(stderr, "Erreur lors de la modification du paramètre height\n");
+        return 1;
+    }
+
+    if (fillConfigWithStruct(config) == 1) {
+        fprintf(stderr, "Erreur lors de la modification du fichier de configuration\n");
+        return 1;
+    }
+
+    return 0;
+}
+
+int fillConfigWithStruct(Config *config) {
+
+        /*
+        * Permet de remplir le fichier de configuration avec les paramètres de la structure Config
+        * Retourne 0 si la modification s'est bien déroulée
+        * Retourne 1 si la modification a échouée
+        */
+
+        if (deleteConfig() == 1) {
+            fprintf(stderr, "Erreur lors de la suppression du fichier de configuration\n");
+            return 1;
+        }
+
+        FILE *file = fopen("../config.txt", "a");
+        if (file == NULL) {
+            fprintf(stderr, "Erreur lors de l'ouverture du fichier config.txt\n");
+            return 1;
+        }
+
+        if (fprintf(file, "fullscreen=%s\n", config->fullscreen ? "true" : "false") < 0) {
+            perror("Erreur lors de l'écriture dans le fichier de configuration");
+            fclose(file);
+            return 1;
+        }
+
+        if (fprintf(file, "width=%d\n", config->width) < 0) {
+            perror("Erreur lors de l'écriture dans le fichier de configuration");
+            fclose(file);
+            return 1;
+        }
+
+        if (fprintf(file, "height=%d\n", config->height) < 0) {
+            perror("Erreur lors de l'écriture dans le fichier de configuration");
+            fclose(file);
+            return 1;
+        }
+
+        fclose(file);
+        return 0;
+}
+
+int deleteConfig() {
+
+    /*
+     * Permet de supprimer le fichier de configuration
+     * Retourne 0 si la suppression s'est bien déroulée
+     * Retourne 1 si la suppression a échouée
+     */
+
+    if (remove("../config.txt") == 0) {
+        return 0;
+    } else {
+        return 1;
     }
 }

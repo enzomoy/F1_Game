@@ -20,4 +20,7 @@ int createConfig();
 int addBaseConfig(char *filename);
 int readConfiguration(Config *config);
 int strToBool(char *str);
+int configSettings(Config *config, int fullscreen, int width, int height);
+int deleteConfig();
+int fillConfigWithStruct(Config *config);
 #endif //F1_PROJECT_CONFIG_H
