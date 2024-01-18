@@ -30,6 +30,7 @@ int createConfig() {
     }
 
 
+    fclose(file);
     return 0;
 }
 
@@ -70,37 +71,54 @@ int addBaseConfig(char *filename) {
 }
 
 int readConfiguration(Config *config) {
-
-    /*
-     * Permet de lire le fichier de configuration et le stocker dans la structure Config
-     * Retourne 0 si la lecture s'est bien déroulée
-     * Retourne 1 si le fichier n'a pas pu être ouvert
-     */
-
     FILE *file = fopen("../config.txt", "r");
 
     if (file == NULL) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier config.txt\n");
-        return 1;  // Indiquer une erreur
+        return 1;
     }
 
-    char line[100];  // Vous pouvez ajuster la taille en fonction de vos besoins
+    char line[100];
 
     while (fgets(line, sizeof(line), file) != NULL) {
-        // Supprimer le caractère de saut de ligne à la fin de la ligne
         line[strcspn(line, "\n")] = 0;
 
-        // Utiliser strtok pour diviser la ligne en clé et valeur
         char *key = strtok(line, "=");
         char *value = strtok(NULL, "=");
 
         if (key != NULL && value != NULL) {
             if (strcmp(key, "fullscreen") == 0) {
-                config->fullscreen = strToBool(value);
+                if (strcmp(value, "true") == 0) {
+                    config->fullscreen = 1;
+                } else if (strcmp(value, "false") == 0) {
+                    config->fullscreen = 0;
+                } else {
+                    fprintf(stderr, "Erreur : La valeur de fullscreen n'est pas valide.\n");
+                    fclose(file);
+                    return 1;
+                }
             } else if (strcmp(key, "width") == 0) {
-                config->width = atoi(value);
+                char *endptr;
+                long int width = strtol(value, &endptr, 10);
+
+                if (*endptr != '\0' || width < 0 || width > INT_MAX) {
+                    fprintf(stderr, "Erreur : La valeur de width n'est pas un entier valide.\n");
+                    fclose(file);
+                    return 1;
+                }
+
+                config->width = (int)width;
             } else if (strcmp(key, "height") == 0) {
-                config->height = atoi(value);
+                char *endptr;
+                long int height = strtol(value, &endptr, 10);
+
+                if (*endptr != '\0' || height < 0 || height > INT_MAX) {
+                    fprintf(stderr, "Erreur : La valeur de height n'est pas un entier valide.\n");
+                    fclose(file);
+                    return 1;
+                }
+
+                config->height = (int)height;
             } else {
                 fprintf(stderr, "Clé inconnue dans le fichier de configuration : %s\n", key);
             }
@@ -108,7 +126,7 @@ int readConfiguration(Config *config) {
     }
 
     fclose(file);
-    return 0;  // Indiquer le succès
+    return 0;
 }
 
 int strToBool(char *str) {
@@ -130,7 +148,7 @@ int strToBool(char *str) {
     }
 }
 
-int configSettings(Config *config, int fullscreen, int width, int height) {
+int editConfig(Config *config, int fullscreen, int width, int height) {
 
     /*
      * Permet de modifier les paramètres de la structure Config
