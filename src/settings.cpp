@@ -70,6 +70,7 @@ QString Settings::getYlen() const {
 
 void Settings::buttonApplyClick() {
     emit applied();
+    emit backClicked();
 }
 
 void Settings::buttonBackClick() {
