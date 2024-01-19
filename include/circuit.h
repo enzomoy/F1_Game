@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include "config.h"
 
 class Menu;
 
@@ -15,15 +16,15 @@ public:
 
 signals:
     void buttonCircuitBackClick();
+    void buttonStatistiquesClick();
 
 private slots:
 
 private:
     QVBoxLayout *layout;
-    QPushButton *circuit1;
-    QPushButton *circuit2;
-    QPushButton *circuit3;
     QPushButton *backButtonCircuit;
+    QPushButton *buttonCourses;
+    QPushButton *buttonStatistiques;
     QPushButton* createButton(const QString &text, QWidget *parent);
 };
 

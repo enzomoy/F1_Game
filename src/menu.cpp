@@ -36,8 +36,9 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
-
+    statistiquesWidget = new Statistiques(stackedWidget);
     settingsWidget = new Settings(stackedWidget);
+
     connectSignals();
 
     QWidget *menuWidget = new QWidget(this);
@@ -62,15 +63,18 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget->addWidget(startWidget);
     stackedWidget->addWidget(circuitWidget);
     stackedWidget->addWidget(settingsWidget);
+    stackedWidget->addWidget(statistiquesWidget);
 
     layout->addWidget(stackedWidget);
-
     applyStylesheet("../src/css/menu.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
     connect(settingsWidget, &Settings::backClicked, this, &Menu::buttonBackClick);
     connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
+    connect(circuitWidget, &Circuit::buttonStatistiquesClick, this, &Menu::buttonStatistiquesClick);
+    connect(statistiquesWidget, &Statistiques::backButtonModeClicked, this, &Menu::buttonStatistiquesBackClick);
+
 }
 
 void Menu::createPage(const QString &title, int width, int height) {
@@ -83,12 +87,17 @@ void Menu::buttonStartClick() {
     stackedWidget->setCurrentIndex(1);
 }
 
+
 void Menu::buttonExitClick() {
     qApp->quit();
 }
 
 void Menu::buttonSettingsClick() {
     stackedWidget->setCurrentIndex(3);
+}
+
+void Menu::buttonStatistiquesBackClick() {
+    stackedWidget->setCurrentIndex(2);
 }
 
 void Menu::buttonBackClick() {
@@ -102,6 +111,10 @@ void Menu::onDriverSelected(int driverIndex) {
 
 void Menu::buttonCircuitBackClick() {
     stackedWidget->setCurrentIndex(1);
+}
+
+void Menu::buttonStatistiquesClick(){
+    stackedWidget->setCurrentIndex(4);
 }
 
 QPushButton* Menu::createButton(const QString &text, QWidget *parent) {
@@ -128,3 +141,4 @@ void Menu::onSettingsApplied() {
 void Menu::connectSignals() {
     connect(settingsWidget, &Settings::applied, this, &Menu::onSettingsApplied);
 }
+

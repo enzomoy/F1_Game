@@ -1,6 +1,5 @@
 #include "../include/settings.h"
 
-
 Settings::Settings(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
 
