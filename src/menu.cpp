@@ -1,8 +1,9 @@
-// menu.cpp
 #include "../include/menu.h"
 #include <QFile>
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {
+    setFixedSize(600, 400);
+    setWindowTitle("F1 manager");
     layout = new QVBoxLayout(this);
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
@@ -10,9 +11,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     settingsWidget = new Settings(stackedWidget);
     connectSignals();
-
-    QIcon icon("../src/img/logo.png");
-    setWindowIcon(icon);
 
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
@@ -39,8 +37,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     layout->addWidget(stackedWidget);
 
-    setFixedSize(600, 400);
-    setWindowTitle("F1 manager");
     applyStylesheet("../src/css/menu.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);

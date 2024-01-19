@@ -1,9 +1,5 @@
 #include "../include/settings.h"
-#include <QCheckBox>
-#include <QLineEdit>
-#include <QVBoxLayout>
-#include <QLabel>
-#include <QIntValidator>
+
 
 Settings::Settings(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
@@ -28,9 +24,6 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
     Ylen->setProperty("class","Yinput");
     Ylen->setValidator(new QIntValidator(this));
     layout->addWidget(Ylen);
-
-    bool isChecked = checkBox->isChecked();
-    printf("%d\n", isChecked);
 
     apply = createButton("Appliquer", this);
     apply->setProperty("class", "Appliquer");

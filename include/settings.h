@@ -7,6 +7,7 @@
 #include <QCheckBox>
 #include <QLineEdit>
 #include <QLabel>
+#include <QIntValidator>
 
 class Settings : public QWidget {
 Q_OBJECT
