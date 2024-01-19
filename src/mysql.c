@@ -287,3 +287,86 @@ void freeCircuits(char ***circuits) {
     }
     free(circuits);
 }
+
+char ***getAllDriversInfo() {
+    /*
+    * Permet de récupérer toutes les informations sur tous les pilotes
+    * Retourne un tableau de char*** si la récupération est réussie
+    * Retourne NULL si la récupération est échouée
+    */
+
+    if (globalDbConnection.connection == NULL) {
+        return NULL;
+    }
+
+    char query[1000];
+    snprintf(query, sizeof(query), "SELECT * FROM drivers");
+
+    if (mysql_query(globalDbConnection.connection, query) != 0) {
+        fprintf(stderr, "Erreur lors de la requête : %s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+
+    if (result == NULL) {
+        fprintf(stderr, "Erreur lors de la récupération des pilotes : %s\n", mysql_error(globalDbConnection.connection));
+        return NULL;
+    }
+
+    int num_fields = mysql_num_fields(result); // nombre de colonnes dans le résultat
+
+    char ***drivers = (char ***)malloc((mysql_num_rows(result) + 1) * sizeof(char **));
+    if (drivers == NULL) {
+        fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+        mysql_free_result(result);
+        return NULL;
+    }
+
+    int i = 0;
+
+    // Parcours des lignes du résultat
+    MYSQL_ROW row;
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        drivers[i] = (char **)malloc(num_fields * sizeof(char *));
+        if (drivers[i] == NULL) {
+            fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+            mysql_free_result(result);
+            freeDriversInfo(drivers);
+            return NULL;
+        }
+
+        for (int j = 0; j < num_fields; j++) {
+            drivers[i][j] = strdup(row[j]);
+            if (drivers[i][j] == NULL) {
+                fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
+                mysql_free_result(result);
+                freeDriversInfo(drivers);
+                return NULL;
+            }
+        }
+        i++;
+    }
+
+    drivers[i] = NULL;
+    mysql_free_result(result);
+
+    return drivers;
+}
+
+void freeDriversInfo(char ***drivers) {
+    for (int i = 0; drivers[i] != NULL; i++) {
+        for (int j = 0; drivers[i][j] != NULL; j++) {
+            free(drivers[i][j]);
+        }
+        free(drivers[i]);
+    }
+    free(drivers);
+}
+
+void freeDriversName(char **drivers) {
+    for (int i = 0; drivers[i] != NULL; i++) {
+        free(drivers[i]);
+    }
+    free(drivers);
+}

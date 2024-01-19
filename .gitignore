@@ -3,3 +3,4 @@ curl-ca-bundle.crt
 .idea
 ext
 CMakeLists.txt
+config.txt

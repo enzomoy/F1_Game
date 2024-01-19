@@ -30,11 +30,27 @@ char **getAllPilots() {
     return pilots;
 }
 
-void freePilots(char** pilots) {
+char **getAllDriversName() {
+
+    /*
+     * Permet de récupérer tous le nom des pilotes
+     * Retourne un tableau de char* contenant tous les pilotes
+     */
+
+    char ***drivers = getAllDriversInfo();
+
+    char **driversName = (char **)malloc(sizeof(char*) * 20);
     for (int i = 0; i < 20; i++) {
-        free(pilots[i]);
+        driversName[i] = (char *)malloc(sizeof(char) * 50);
+        strcpy(driversName[i], drivers[i][1]);
     }
-    free(pilots);
+
+    freeDriversName(driversName);
+    freeDriversInfo(drivers);
+
+    printf("%s\n", driversName[0]);
+
+    return driversName;
 }
 
 
@@ -53,7 +69,7 @@ int selectPilot(int pilot) {
         return 1;
     }
 
-    freePilots(pilots);
+    freeDriversName(pilots);
     return 0;
 }
 

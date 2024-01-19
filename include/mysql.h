@@ -33,4 +33,10 @@ char ***getAllCircuits();
 char *getCircuitsName(int id);
 void freeCircuits(char ***circuits);
 
+// Driver prototypes
+char ***getAllDriversInfo();
+void freeDriversInfo(char ***drivers);
+char **getAllDriversName();
+void freeDriversName(char **drivers);
+
 #endif //F1_GAME_MYSQL_H
