@@ -62,14 +62,14 @@ int selectPilot(int pilot) {
      * Retourne 1 si la sélection est échouée
      */
 
-    char ***pilots = getAllDriversInfo();
-    printf("Vous avez selectionne le pilote %s\n", pilots[pilot][1]);
+    char **pilots = getAllPilots();
+    printf("Vous avez selectionne le pilote %s\n", pilots[pilot]);
 
-    if (addPlayer(pilots[pilot][1], 0) == 1) {
+    if (addPlayer(pilots[pilot], 0) == 1) {
         return 1;
     }
 
-    freeDriversInfo(pilots);
+    freeDriversName(pilots);
     return 0;
 }
 
