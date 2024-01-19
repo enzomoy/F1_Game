@@ -25,11 +25,6 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         });
     }
 
-    // Initialisation de la bdd
-    if (dbConnect(&globalDbConnection) == 1) {
-        printf("Erreur de connexion à la base de donnees");
-        exit(1);
-    }
 
     layout->addWidget(label);
     layout->addWidget(backButton);

@@ -8,6 +8,8 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QIntValidator>
+#include "config.h"
+#include <QByteArray>
 
 class Settings : public QWidget {
 Q_OBJECT

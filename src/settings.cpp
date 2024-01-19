@@ -65,13 +65,16 @@ QString Settings::getYlen() const {
 
 void Settings::buttonApplyClick() {
     bool isChecked = isCheckBoxChecked();
-    qDebug() << "Checkbox checked: " << isChecked;
 
-    QString xValue = getXlen();
-    qDebug() << "Xlen value: " << xValue;
+    const char* Xvalue = getXlen().toLatin1().data();
+    int X = atoi(Xvalue);
 
-    QString yValue = getYlen();
-    qDebug() << "Ylen value: " << yValue;
+    const char* Yvalue = getYlen().toLatin1().data();
+    int Y = atoi(Yvalue);
+
+    if( editConfig(&globalConfig,isChecked,X,Y) == 1){
+        printf("Erreur de modification du fichier de configuration");
+    }
 
     emit applied();
     emit backClicked();

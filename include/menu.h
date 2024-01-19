@@ -10,6 +10,7 @@
 #include "start.h"
 #include "circuit.h"
 #include "settings.h"
+#include "config.h"
 
 class Menu : public QWidget {
 Q_OBJECT
