@@ -10,7 +10,7 @@ L'interface graphique est créée à l'aide de la bibliothèque SDL. La sécurit
 Pour simplifier l'installation, le projet inclut un 'installer avec Inno Setup qui configure rapidement l'application sur le système de l'utilisateur. De plus, le projet inclura la librairie curl afin de réaliser des requêtes. En résumé, le projet F1 manager offre une expérience de simulation virtuelle qui devra se montrer la plus complète possible.
 
 # Résumé des bibliothèques : 
-- SDL
+- Qt
 - MySQL
 - CURL
 - OpenSSL

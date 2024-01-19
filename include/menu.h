@@ -1,3 +1,4 @@
+// menu.h
 #ifndef MENU_H
 #define MENU_H
 
@@ -7,9 +8,8 @@
 #include <QStackedWidget>
 #include <QApplication>
 #include "start.h"
-
-
-class Circuit;
+#include "circuit.h"
+#include "settings.h"
 
 class Menu : public QWidget {
 Q_OBJECT
@@ -19,21 +19,27 @@ public:
 
 private slots:
     void buttonStartClick();
+    void buttonSettingsClick();
     void buttonExitClick();
     void buttonBackClick();
     void onDriverSelected(int driverIndex);
     void buttonCircuitBackClick();
+    void onSettingsApplied();
 
 private:
     QVBoxLayout *layout;
     QStackedWidget *stackedWidget;
     QPushButton *startButton;
+    QPushButton *settingsButton;
     QPushButton *exitButton;
     Start *startWidget;
     Circuit *circuitWidget;
+    Settings *settingsWidget;
 
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);
+    void connectSignals();
+
 };
 
 #endif

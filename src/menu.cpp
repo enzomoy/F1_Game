@@ -1,12 +1,16 @@
 #include "../include/menu.h"
 #include <QFile>
-#include "../include/circuit.h"
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {
+    setFixedSize(600, 400);
+    setWindowTitle("F1 manager");
     layout = new QVBoxLayout(this);
     stackedWidget = new QStackedWidget(this);
     startWidget = new Start(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
+
+    settingsWidget = new Settings(stackedWidget);
+    connectSignals();
 
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
@@ -14,6 +18,10 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     startButton = createButton("Start", menuWidget);
     startButton->setProperty("class", "startButton");
     connect(startButton, &QPushButton::clicked, this, &Menu::buttonStartClick);
+
+    settingsButton = createButton("Settings", menuWidget);
+    settingsButton->setProperty("class", "settingsButton");
+    connect(settingsButton, &QPushButton::clicked, this, &Menu::buttonSettingsClick);
 
     exitButton = createButton("Exit", menuWidget);
     exitButton->setProperty("class", "exitButton");
@@ -25,16 +33,15 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget->addWidget(menuWidget);
     stackedWidget->addWidget(startWidget);
     stackedWidget->addWidget(circuitWidget);
+    stackedWidget->addWidget(settingsWidget);
 
     layout->addWidget(stackedWidget);
 
-    setFixedSize(600, 400);
-    setWindowTitle("F1 manager");
     applyStylesheet("../src/css/menu.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
-
+    connect(settingsWidget, &Settings::backClicked, this, &Menu::buttonBackClick);
     connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
 }
 
@@ -50,6 +57,10 @@ void Menu::buttonStartClick() {
 
 void Menu::buttonExitClick() {
     qApp->quit();
+}
+
+void Menu::buttonSettingsClick() {
+    stackedWidget->setCurrentIndex(3);
 }
 
 void Menu::buttonBackClick() {
@@ -78,4 +89,14 @@ void Menu::applyStylesheet(const QString &path) {
         setStyleSheet(styleSheet);
         styleFile.close();
     }
+}
+
+void Menu::onSettingsApplied() {
+    close();
+    Menu menu;
+    show();
+}
+
+void Menu::connectSignals() {
+    connect(settingsWidget, &Settings::applied, this, &Menu::onSettingsApplied);
 }
