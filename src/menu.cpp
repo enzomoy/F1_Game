@@ -72,6 +72,7 @@ void Menu::buttonBackClick() {
 }
 
 void Menu::onDriverSelected(int driverIndex) {
+    selectPilot(driverIndex);
     stackedWidget->setCurrentIndex(2);
 }
 
@@ -96,6 +97,7 @@ void Menu::applyStylesheet(const QString &path) {
 
 void Menu::onSettingsApplied() {
     close();
+    Menu menu;
     show();
 }
 

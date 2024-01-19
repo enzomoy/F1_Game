@@ -3,6 +3,7 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QIntValidator>
 
 Settings::Settings(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
@@ -16,6 +17,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
 
     Xlen = new QLineEdit(this);
     Xlen->setProperty("class","Xinput");
+    Xlen->setValidator(new QIntValidator(this));
     layout->addWidget(Xlen);
 
     label2 = new QLabel("Y : ", this);
@@ -24,9 +26,11 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
 
     Ylen = new QLineEdit(this);
     Ylen->setProperty("class","Yinput");
+    Ylen->setValidator(new QIntValidator(this));
     layout->addWidget(Ylen);
 
-    bool isChecked = isCheckBoxChecked();
+    bool isChecked = checkBox->isChecked();
+    printf("%d\n", isChecked);
 
     apply = createButton("Appliquer", this);
     apply->setProperty("class", "Appliquer");
@@ -38,9 +42,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
 
     connect(apply, &QPushButton::clicked, this, &Settings::buttonApplyClick);
     connect(backButtonSettings, &QPushButton::clicked, this, &Settings::buttonBackClick);
-
 }
-
 ////////////////////////////////////////////////////////////////////////////
 QPushButton* Settings::createButton(const QString &text, QWidget *parent) {
     QPushButton *button = new QPushButton(text, parent);
@@ -69,6 +71,15 @@ QString Settings::getYlen() const {
 }
 
 void Settings::buttonApplyClick() {
+    bool isChecked = isCheckBoxChecked();
+    qDebug() << "Checkbox checked: " << isChecked;
+
+    QString xValue = getXlen();
+    qDebug() << "Xlen value: " << xValue;
+
+    QString yValue = getYlen();
+    qDebug() << "Ylen value: " << yValue;
+
     emit applied();
     emit backClicked();
 }

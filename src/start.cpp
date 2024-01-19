@@ -31,20 +31,6 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         exit(1);
     }
 
-    /////////////////////////////////////////////
-    // Fonction de test
-//    if (selectPilot(1) == 1) {
-//        printf("Erreur de selection du pilote\n");
-//    }
-//    if (addScore(8, 100) == 1) {
-//        printf("Erreur d'ajout du score\n");
-//    }
-//    if (removePlayer(1) == 1) {
-//        printf("Erreur de suppression du joueur\n");
-//    }
-//    int id = getCircuitsName(1);
-//    printf("%d\n", id);
-    /////////////////////////////////////////////
     layout->addWidget(label);
     layout->addWidget(backButton);
     if (&QPushButton::clicked) {
