@@ -8,11 +8,11 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     startWidget = new Start(stackedWidget);
     circuitWidget = new Circuit(stackedWidget);
 
-    // Créez d'abord l'objet settingsWidget
     settingsWidget = new Settings(stackedWidget);
-
-    // Connectez ensuite le signal applied
     connectSignals();
+
+    QIcon icon("../src/img/logo.png");
+    setWindowIcon(icon);
 
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
@@ -72,6 +72,7 @@ void Menu::buttonBackClick() {
 }
 
 void Menu::onDriverSelected(int driverIndex) {
+    selectPilot(driverIndex);
     stackedWidget->setCurrentIndex(2);
 }
 
@@ -96,6 +97,7 @@ void Menu::applyStylesheet(const QString &path) {
 
 void Menu::onSettingsApplied() {
     close();
+    Menu menu;
     show();
 }
 
