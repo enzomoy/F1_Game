@@ -28,10 +28,6 @@ int removePlayer(int id);
 int setScore(int id, int score);
 int getScore(int id);
 
-// Circuit prototypes
-char ***getAllCircuits();
-char *getCircuitsName(int id);
-void freeCircuits(char ***circuits);
 
 // Driver prototypes
 char ***getAllDriversInfo();
