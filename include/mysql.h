@@ -27,6 +27,7 @@ int addPlayer(const char* pilot, int score);
 int removePlayer(int id);
 int setScore(int id, int score);
 int getScore(int id);
+char* getLastPilot();
 
 // Circuit prototypes
 char ***getAllCircuits();

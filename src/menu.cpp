@@ -44,7 +44,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     QWidget *menuWidget = new QWidget(this);
     QVBoxLayout *menuLayout = new QVBoxLayout(menuWidget);
 
-    startButton = createButton("Start", menuWidget);
+    startButton = createButton("Select Pilots", menuWidget);
     startButton->setProperty("class", "startButton");
     connect(startButton, &QPushButton::clicked, this, &Menu::buttonStartClick);
 
@@ -77,11 +77,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
 }
 
-void Menu::createPage(const QString &title, int width, int height) {
-    QWidget *page = startWidget;
-    page->setFixedSize(width, height);
-    setWindowTitle(title);
-}
 
 void Menu::buttonStartClick() {
     stackedWidget->setCurrentIndex(1);

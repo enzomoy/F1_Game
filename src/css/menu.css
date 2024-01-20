@@ -29,9 +29,9 @@
 
 .selectDrivers{
     text-align: center;
-    margin-bottom: 250%;
-    margin-left: 220%;
-    margin-top: 10%;
+    margin-bottom: 400px;
+    margin-left: 350%;
+
 }
 
 .driversButton{
@@ -40,10 +40,14 @@
 }
 
 .buttonCircuitBackClick{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
     background-color: lightcoral;
 }
-
-
 
 .Appliquer{
     padding: 15px 32px;
@@ -75,3 +79,12 @@
     margin-bottom: 50%;
 }
 
+.backButtonStatistiques{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}

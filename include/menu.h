@@ -10,14 +10,13 @@
 #include "start.h"
 #include "circuit.h"
 #include "settings.h"
-#include "statistiques.h"  // Include the Statistics header
+#include "statistiques.h"
 #include "config.h"
 
 class Menu : public QWidget {
 Q_OBJECT
 public:
     Menu(QWidget *parent = nullptr);
-    void createPage(const QString &title, int width, int height);
 
 private slots:
     void buttonStartClick();

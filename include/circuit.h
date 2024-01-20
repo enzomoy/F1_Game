@@ -25,6 +25,7 @@ private:
     QPushButton *backButtonCircuit;
     QPushButton *buttonCourses;
     QPushButton *buttonStatistiques;
+    QLabel *pilotsName;
     QPushButton* createButton(const QString &text, QWidget *parent);
 };
 
