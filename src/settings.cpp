@@ -5,6 +5,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
 
     QCheckBox *checkBox = createCheckBox("Fullscreen");
     layout->addWidget(checkBox);
+    checkBox->setChecked(globalConfig.fullscreen == 1);
 
     label1 = new QLabel("X : ", this);
     label1->setProperty("class", "printX");
@@ -13,6 +14,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
     Xlen = new QLineEdit(this);
     Xlen->setProperty("class","Xinput");
     Xlen->setValidator(new QIntValidator(this));
+    Xlen->setText(QString::number(globalConfig.width));
     layout->addWidget(Xlen);
 
     label2 = new QLabel("Y : ", this);
@@ -22,6 +24,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent) {
     Ylen = new QLineEdit(this);
     Ylen->setProperty("class","Yinput");
     Ylen->setValidator(new QIntValidator(this));
+    Ylen->setText(QString::number(globalConfig.height));
     layout->addWidget(Ylen);
 
     apply = createButton("Appliquer", this);

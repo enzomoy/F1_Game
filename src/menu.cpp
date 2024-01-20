@@ -135,6 +135,12 @@ void Menu::applyStylesheet(const QString &path) {
 void Menu::onSettingsApplied() {
     close();
     Menu menu;
+    if (globalConfig.fullscreen == 1){
+        showFullScreen();
+    }else{
+        showNormal();
+        setFixedSize(globalConfig.width, globalConfig.height);
+    }
     show();
 }
 
