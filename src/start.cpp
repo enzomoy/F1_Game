@@ -5,30 +5,29 @@ Start::Start(QWidget *parent) : QWidget(parent) {
 
     label = new QLabel("Select your driver", this);
     label->setProperty("class", "selectDrivers");
+
     backButton = createButton("Back", this);
     backButton->setProperty("class", "backButton");
 
-    int x = 37;
-    int y = 100;
+    int lenx = globalConfig.width / 10;
+    int x = lenx ;
+
+    int leny = globalConfig.height /6;
+    int y = leny ;
+
     char **pilots = getAllPilots();
     for (int i = 0; i < 20; i++) {
         driversButton = createButton(pilots[i], this);
         driversButton->setProperty("class", "driversButton");
-        driversButton->setGeometry(x, y, 99 , 30);
-        x += 100;
-        if (x > 500) {
-            x = 37;
-            y += 50;
+        driversButton->setGeometry(x, y, globalConfig.width/7 , globalConfig.height / 15);
+        x += globalConfig.width / 6;
+        if (x > globalConfig.width - globalConfig.width/6) {
+            x = lenx;
+            y += leny;
         }
         connect(driversButton, &QPushButton::clicked, this, [this, i]() {
             onDriverButtonClicked(i);
         });
-    }
-
-    // Initialisation de la bdd
-    if (dbConnect(&globalDbConnection) == 1) {
-        printf("Erreur de connexion à la base de donnees");
-        exit(1);
     }
 
     layout->addWidget(label);

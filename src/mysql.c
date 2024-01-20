@@ -70,6 +70,7 @@ int addPlayer(const char* pilot, int score) {
     return 0;
 }
 
+
 int removePlayer(int id) {
     /*
     * Permet de supprimer un joueur de la base de données

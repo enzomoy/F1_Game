@@ -1,24 +1,33 @@
 #include "../include/circuit.h"
+#include <QFrame>
+#include "../include/mysql.h"
 
 Circuit::Circuit(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
 
-    circuit1 = createButton(" ", this);
-    circuit1->setProperty("class", "circuit1");
-    circuit1->setGeometry(10, 50, 180 , 300);
+    QFrame *horizontalLine = new QFrame();
+    horizontalLine->setFrameShape(QFrame::HLine);
+    horizontalLine->setFrameShadow(QFrame::Plain);
+    horizontalLine->setLineWidth(50);
+    layout->addWidget(horizontalLine);
 
-    circuit2 = createButton(" ", this);
-    circuit2->setProperty("class", "circuit2");
-    circuit2->setGeometry(200, 50, 180 , 300);
+    buttonStatistiques = createButton("Statistiques", this);
+    buttonStatistiques->setProperty("class", "buttonStatistiques");
+    buttonStatistiques->move(2*globalConfig.width/7 , 2*globalConfig.height / 3);
+    buttonStatistiques->resize(2*globalConfig.width/7 , globalConfig.height / 10);
+    layout->addWidget(buttonStatistiques);
 
-    circuit3 = createButton(" ", this);
-    circuit3->setProperty("class", "circuit3");
-    circuit3->setGeometry(390, 50, 180 , 300);
+    buttonCourses = createButton("Courses", this);
+    buttonCourses->setProperty("class", "buttonCourses");
+    layout->addWidget(buttonCourses);
 
     backButtonCircuit = createButton("Back", this);
     backButtonCircuit->setProperty("class", "buttonCircuitBackClick");
+    layout->addWidget(backButtonCircuit);
 
     connect(backButtonCircuit, &QPushButton::clicked, this, &Circuit::buttonCircuitBackClick);
+
+    connect(buttonStatistiques, &QPushButton::clicked, this, &Circuit::buttonStatistiquesClick);
 }
 
 QPushButton* Circuit::createButton(const QString &text, QWidget *parent) {

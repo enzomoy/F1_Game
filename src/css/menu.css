@@ -29,9 +29,9 @@
 
 .selectDrivers{
     text-align: center;
-    margin-bottom: 250%;
-    margin-left: 220%;
-    margin-top: 10%;
+    margin-bottom: 400px;
+    margin-left: 350%;
+
 }
 
 .driversButton{
@@ -40,22 +40,13 @@
 }
 
 .buttonCircuitBackClick{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
     background-color: lightcoral;
-}
-
-.circuit1{
-    margin-top: 20%;
-    background-image:url('../src/img/monza.png');
-}
-
-.circuit2{
-    margin-top: 20%;
-    background-image:url('../src/img/baku.png');
-}
-
-.circuit3{
-    margin-top: 20px;
-    background-image:url('../src/img/spain.png');
 }
 
 .Appliquer{
@@ -88,6 +79,12 @@
     margin-bottom: 50%;
 }
 
-.backButtonSettings{
-
+.backButtonStatistiques{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
 }
