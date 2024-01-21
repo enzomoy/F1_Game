@@ -88,3 +88,28 @@
     margin-right: 20%;
     background-color: lightcoral;
 }
+
+.PilotsName{
+    font-size: 30px;
+    margin-left: 280%;
+    margin-bottom: 200%;
+}
+
+.buttonStatistiques{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 80%;
+    margin-right: 80%;
+    margin-bottom: 100%;
+}
+
+.buttonCourses{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 80%;
+    margin-right: 80%;
+}

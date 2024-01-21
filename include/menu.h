@@ -28,6 +28,7 @@ private slots:
     void onSettingsApplied();
     void buttonStatistiquesClick();
     void buttonStatistiquesBackClick();
+    void onDriverButtonClickedInStart(int driverIndex);
 
 private:
     QVBoxLayout *layout;
@@ -43,6 +44,9 @@ private:
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);
     void connectSignals();
+
+signals:
+    void onDriverButtonClicked(int driverIndex);
 };
 
 #endif // MENU_H

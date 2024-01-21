@@ -1,3 +1,4 @@
+// circuit.h
 #ifndef CIRCUIT_H
 #define CIRCUIT_H
 
@@ -6,8 +7,12 @@
 #include <QPushButton>
 #include <QLabel>
 #include "config.h"
-
-class Menu;
+#include "pilots_fonctions.h"
+#include "start.h"
+#include "circuit.h"
+#include "settings.h"
+#include "statistiques.h"
+#include "config.h"
 
 class Circuit : public QWidget {
 Q_OBJECT
@@ -18,14 +23,18 @@ signals:
     void buttonCircuitBackClick();
     void buttonStatistiquesClick();
 
-private slots:
+public slots:
+    void setSelectedDriverId(int driverId);
 
 private:
     QVBoxLayout *layout;
+    QVBoxLayout *PilotsInfo;
     QPushButton *backButtonCircuit;
     QPushButton *buttonCourses;
     QPushButton *buttonStatistiques;
-    QLabel *pilotsName;
+    QLabel *PilotsName;
+    int selectedDriverId;
+
     QPushButton* createButton(const QString &text, QWidget *parent);
 };
 

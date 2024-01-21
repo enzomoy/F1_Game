@@ -70,6 +70,8 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
+    connect(startWidget, &Start::driverButtonClicked, this, &Menu::onDriverButtonClicked);
+    connect(startWidget, &Start::driverButtonClicked, circuitWidget, &Circuit::setSelectedDriverId);
     connect(settingsWidget, &Settings::backClicked, this, &Menu::buttonBackClick);
     connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
     connect(circuitWidget, &Circuit::buttonStatistiquesClick, this, &Menu::buttonStatistiquesClick);
@@ -141,5 +143,10 @@ void Menu::onSettingsApplied() {
 
 void Menu::connectSignals() {
     connect(settingsWidget, &Settings::applied, this, &Menu::onSettingsApplied);
+    connect(startWidget, &Start::driverButtonClicked, this, &Menu::onDriverButtonClickedInStart);
 }
 
+void Menu::onDriverButtonClickedInStart(int driverIndex) {
+    qDebug() << "Driver selected with ID:" << driverIndex;
+    circuitWidget->setSelectedDriverId(driverIndex);
+}
