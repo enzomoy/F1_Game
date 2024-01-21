@@ -1,3 +1,4 @@
+// start.cpp
 #include "../include/start.h"
 
 Start::Start(QWidget *parent) : QWidget(parent) {
@@ -10,10 +11,10 @@ Start::Start(QWidget *parent) : QWidget(parent) {
     backButton->setProperty("class", "backButton");
 
     int lenx = globalConfig.width / 10;
-    int x = lenx ;
+    int x = lenx;
 
-    int leny = globalConfig.height /6;
-    int y = leny ;
+    int leny = globalConfig.height / 6;
+    int y = leny;
 
     char **pilots = getAllPilots();
     for (int i = 0; i < 20; i++) {
@@ -47,5 +48,6 @@ QPushButton* Start::createButton(const QString &text, QWidget *parent) {
 }
 
 void Start::onDriverButtonClicked(int driverIndex) {
+    emit driverButtonClicked(driverIndex);
     emit driverSelected(driverIndex);
 }

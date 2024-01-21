@@ -63,7 +63,6 @@ int selectPilot(int pilot) {
      */
 
     char **pilots = getAllPilots();
-    printf("Vous avez selectionne le pilote %s\n", pilots[pilot]);
 
     if (addPlayer(pilots[pilot], 0) == 1) {
         return 1;
@@ -162,4 +161,12 @@ Pilots getDriverData(int id) {
     initAllDrivers(pilotes);
 
     return pilotes[id];
+}
+
+void StockId(int id) {
+    storedId = id;
+}
+
+int GetId() {
+    return storedId;
 }

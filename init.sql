@@ -60,8 +60,6 @@ CREATE TABLE IF NOT EXISTS `f1_project`.`drivers` (
     equipe VARCHAR(50)
 );
 
-
-
 INSERT INTO drivers (nom, courses, victoires, deuxiemes, troisiemes, podiums, poles, laps, points, equipe) VALUES
     ('Max Verstappen', 22, 10, 8, 0, 18, 10, 1211, 395.5, 'Red Bull Racing'),
     ('Lewis Hamilton', 22, 8, 8, 1, 17, 5, 1269, 387.5, 'Mercedes'),

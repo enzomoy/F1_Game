@@ -1,3 +1,4 @@
+// start.h
 #ifndef START_H
 #define START_H
 
@@ -16,6 +17,7 @@ public:
 
 signals:
     void backClicked();
+    void driverButtonClicked(int driverIndex);
     void driverSelected(int driverIndex);
 
 private slots:
