@@ -1,5 +1,4 @@
 #include "../include/menu.h"
-#include <QFile>
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {
 
@@ -38,6 +37,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     circuitWidget = new Circuit(stackedWidget);
     statistiquesWidget = new Statistiques(stackedWidget);
     settingsWidget = new Settings(stackedWidget);
+    coursesWidget = new Courses(stackedWidget);
 
     connectSignals();
 
@@ -64,6 +64,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     stackedWidget->addWidget(circuitWidget);
     stackedWidget->addWidget(settingsWidget);
     stackedWidget->addWidget(statistiquesWidget);
+    stackedWidget->addWidget(coursesWidget);
 
     layout->addWidget(stackedWidget);
     applyStylesheet("../src/css/menu.css");
@@ -76,7 +77,10 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     connect(circuitWidget, &Circuit::buttonCircuitBackClick, this, &Menu::buttonCircuitBackClick);
     connect(circuitWidget, &Circuit::buttonStatistiquesClick, this, &Menu::buttonStatistiquesClick);
     connect(statistiquesWidget, &Statistiques::backButtonModeClicked, this, &Menu::buttonStatistiquesBackClick);
-
+    connect(circuitWidget, &Circuit::buttonCoursesClick, this, &Menu::buttonCoursesClick);
+    if (coursesWidget) {
+        connect(coursesWidget, &Courses::buttonCoursesBackClick, this, &Menu::buttonCoursesBackClick);
+    }
 }
 
 
@@ -106,12 +110,20 @@ void Menu::onDriverSelected(int driverIndex) {
     stackedWidget->setCurrentIndex(2);
 }
 
+void Menu::buttonCoursesBackClick() {
+    stackedWidget->setCurrentIndex(2);
+}
+
 void Menu::buttonCircuitBackClick() {
     stackedWidget->setCurrentIndex(1);
 }
 
 void Menu::buttonStatistiquesClick(){
     stackedWidget->setCurrentIndex(4);
+}
+
+void Menu::buttonCoursesClick() {
+    stackedWidget->setCurrentIndex(5);
 }
 
 QPushButton* Menu::createButton(const QString &text, QWidget *parent) {

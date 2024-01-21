@@ -23,7 +23,7 @@ Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
 
     PilotsRaces = new QLabel(" Nombre de course :" + QString::number(selectedPilot.courses), this);
     PilotsRaces->setProperty("class", "PilotsRaces");
-    PilotsRaces->setStyleSheet("font-size: 32px; margin-left : 200%; margin-bottom 500%");
+    PilotsRaces->setStyleSheet("font-size: 32px; margin-left : 200%;");
     infoLayout->addWidget(PilotsRaces);
 
     PilotsWin = new QLabel(" Nombre de victoire :" + QString::number(selectedPilot.victoires), this);
@@ -53,8 +53,7 @@ Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
     infoLayout->addWidget(PilotsPoles);
     infoLayout->addSpacerItem(new QSpacerItem(40, 80, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
-    mainLayout->addLayout(infoLayout);
-
+    mainLayout->addLayout(infoLayout, Qt::AlignCenter);
 
 
     ///////////////////////

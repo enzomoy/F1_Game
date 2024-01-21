@@ -30,6 +30,8 @@ Circuit::Circuit(QWidget *parent) : QWidget(parent) {
 
     connect(backButtonCircuit, &QPushButton::clicked, this, &Circuit::buttonCircuitBackClick);
     connect(buttonStatistiques, &QPushButton::clicked, this, &Circuit::buttonStatistiquesClick);
+
+    connect(buttonCourses, &QPushButton::clicked, this, &Circuit::buttonCoursesClick);
 }
 
 QPushButton* Circuit::createButton(const QString &text, QWidget *parent) {
@@ -40,3 +42,5 @@ QPushButton* Circuit::createButton(const QString &text, QWidget *parent) {
 void Circuit::setSelectedDriverId(int driverId) {
     selectedDriverId = driverId;
 }
+
+

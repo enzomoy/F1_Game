@@ -1,8 +1,8 @@
-// menu.h
 #ifndef MENU_H
 #define MENU_H
 
 #include <QWidget>
+#include <QFile>
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QStackedWidget>
@@ -12,6 +12,7 @@
 #include "settings.h"
 #include "statistiques.h"
 #include "config.h"
+#include "courses.h"
 
 class Menu : public QWidget {
 Q_OBJECT
@@ -29,6 +30,8 @@ private slots:
     void buttonStatistiquesClick();
     void buttonStatistiquesBackClick();
     void onDriverButtonClickedInStart(int driverIndex);
+    void buttonCoursesClick();
+    void buttonCoursesBackClick();
 
 private:
     QVBoxLayout *layout;
@@ -40,6 +43,7 @@ private:
     Circuit *circuitWidget;
     Statistiques *statistiquesWidget;
     Settings *settingsWidget;
+    Courses *coursesWidget;
 
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);

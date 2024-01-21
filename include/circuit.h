@@ -1,4 +1,3 @@
-// circuit.h
 #ifndef CIRCUIT_H
 #define CIRCUIT_H
 
@@ -9,10 +8,9 @@
 #include "config.h"
 #include "pilots_fonctions.h"
 #include "start.h"
-#include "circuit.h"
 #include "settings.h"
 #include "statistiques.h"
-#include "config.h"
+#include "courses.h"
 
 class Circuit : public QWidget {
 Q_OBJECT
@@ -22,6 +20,7 @@ public:
 signals:
     void buttonCircuitBackClick();
     void buttonStatistiquesClick();
+    void buttonCoursesClick();
 
 public slots:
     void setSelectedDriverId(int driverId);
