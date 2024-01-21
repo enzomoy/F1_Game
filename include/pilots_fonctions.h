@@ -24,8 +24,9 @@ int selectPilot(int pilot);
 int addScore(int playerId, int addedScore);
 Pilots getDriverData(int id);
 int initAllDrivers(Pilots pilots[]);
-static int storedId;
-void StockId(int id);
-int GetId();
+extern int driverSelected;
+void savePilot(int id);
+int getPilot();
+char **getAllPilots();
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H

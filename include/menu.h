@@ -13,6 +13,7 @@
 #include "statistiques.h"
 #include "config.h"
 #include "courses.h"
+#include "circuit_info.h"
 
 class Menu : public QWidget {
 Q_OBJECT
@@ -32,6 +33,8 @@ private slots:
     void onDriverButtonClickedInStart(int driverIndex);
     void buttonCoursesClick();
     void buttonCoursesBackClick();
+    void buttonCoursesInfoClick();
+    void buttonCoursesInfoBackClick();
 
 private:
     QVBoxLayout *layout;
@@ -44,6 +47,7 @@ private:
     Statistiques *statistiquesWidget;
     Settings *settingsWidget;
     Courses *coursesWidget;
+    CircuitInfo *circuitInfoWidget;
 
     QPushButton* createButton(const QString &text, QWidget *parent);
     void applyStylesheet(const QString &path);

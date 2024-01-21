@@ -1,14 +1,13 @@
 #include "../include/statistiques.h"
 
-
 Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QVBoxLayout *nameLayout = new QVBoxLayout();
 
-    int id = GetId();
+
+    int id = getPilot();
     Pilots selectedPilot = getDriverData(id);
-    printf("Le pilote %s\n", selectedPilot.nom);
 
     PilotsName = new QLabel(selectedPilot.nom, this);
     PilotsName->setProperty("class", "PilotsName");
@@ -16,7 +15,6 @@ Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
     mainLayout->addLayout(nameLayout);
 
     //////////////////////////////
-
 
     QVBoxLayout *infoLayout = new QVBoxLayout();
     infoLayout->addSpacerItem(new QSpacerItem(40, 80, QSizePolicy::Minimum, QSizePolicy::Expanding));

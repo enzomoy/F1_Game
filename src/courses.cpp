@@ -12,17 +12,18 @@ Courses::Courses(QWidget *parent) : QWidget(parent) {
     int leny = globalConfig.height / 6;
     int y = leny;
 
-
     for (int i = 0; i < 20; i++) {
         coursesButton = createButton(circuitsName[i], this);
-        coursesButton->setProperty("class", "driversButton");
+        coursesButton->setProperty("class", "coursesButton");
         coursesButton->setGeometry(x, y, globalConfig.width/7 , globalConfig.height / 15);
         x += globalConfig.width / 6;
         mainlayout->addWidget(coursesButton);
         if (x > globalConfig.width - globalConfig.width/6) {
             x = lenx;
             y += leny;
-        }}
+        }
+        connect(coursesButton, &QPushButton::clicked, this, &Courses::onCoursesInfoButtonClick);
+    }
 
     QVBoxLayout *backBoutton = new QVBoxLayout(this);
     backButtonCourses = createButton("Back", this);
@@ -34,9 +35,11 @@ Courses::Courses(QWidget *parent) : QWidget(parent) {
 
 }
 
-
-
 QPushButton* Courses::createButton(const QString &text, QWidget *parent) {
     QPushButton *button = new QPushButton(text, parent);
     return button;
+}
+
+void Courses::onCoursesInfoButtonClick() {
+    emit coursesInfoButtonClicked();
 }

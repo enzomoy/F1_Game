@@ -1,4 +1,7 @@
 #include "../include/pilots_fonctions.h"
+#include "../include/start.h"
+
+int driverSelected;
 
 char **getAllPilots() {
     char **pilots = (char **)malloc(20 * sizeof(char *));
@@ -163,10 +166,10 @@ Pilots getDriverData(int id) {
     return pilotes[id];
 }
 
-void StockId(int id) {
-    storedId = id;
+void savePilot(int id) {
+    driverSelected = id;
 }
 
-int GetId() {
-    return storedId;
+int getPilot() {
+    return driverSelected;
 }

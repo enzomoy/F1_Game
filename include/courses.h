@@ -15,12 +15,16 @@ public:
 
 signals:
     void buttonCoursesBackClick();
+    void coursesInfoButtonClicked();
 
 private:
     QVBoxLayout *mainlayout;
     QVBoxLayout *backBoutton;
     QPushButton *backButtonCourses;
     QPushButton *coursesButton;
+
+private slots:
+    void onCoursesInfoButtonClick();
 
     QPushButton* createButton(const QString &text, QWidget *parent);
 };

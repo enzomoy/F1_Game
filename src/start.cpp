@@ -1,11 +1,13 @@
-// start.cpp
 #include "../include/start.h"
+#include "../include/pilots_fonctions.h"
+
 
 Start::Start(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);
 
     label = new QLabel("Select your driver", this);
     label->setProperty("class", "selectDrivers");
+
 
     backButton = createButton("Back", this);
     backButton->setProperty("class", "backButton");
@@ -17,6 +19,7 @@ Start::Start(QWidget *parent) : QWidget(parent) {
     int y = leny;
 
     char **pilots = getAllPilots();
+
     for (int i = 0; i < 20; i++) {
         driversButton = createButton(pilots[i], this);
         driversButton->setProperty("class", "driversButton");
@@ -26,7 +29,10 @@ Start::Start(QWidget *parent) : QWidget(parent) {
             x = lenx;
             y += leny;
         }
+
         connect(driversButton, &QPushButton::clicked, this, [this, i]() {
+            savePilot(i);
+
             onDriverButtonClicked(i);
         });
     }
@@ -37,7 +43,6 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         connect(backButton, &QPushButton::clicked, this, &Start::buttonBackClick);
     }
 }
-
 void Start::buttonBackClick() {
     emit backClicked();
 }
