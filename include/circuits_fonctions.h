@@ -10,6 +10,8 @@
 #include <string.h>
 #include "mysql.h"
 
+#define CIRCUITS_NUMBER 20
+
 typedef struct CircuitData {
     int circuit_id;
     char nom[255];
@@ -27,9 +29,7 @@ typedef struct CircuitData {
 } CircuitData;
 
 // Circuit prototypes
-char ***getAllCircuits();
-char **getCircuitsName();
-void freeCircuitsName(char **circuits);
-void freeCircuits(char ***circuits);
+int initAllCircuits(CircuitData circuits[]);
+CircuitData getCircuitData(int id);
 
 #endif //F1_GAME_CIRCUITS_FONCTIONS_H
