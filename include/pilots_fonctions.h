@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define DRIVERS_NUMBER 20
+
 typedef struct Pilots {
     char nom[20];
     int courses;
@@ -19,14 +21,7 @@ typedef struct Pilots {
     float points;
 } Pilots;
 
-char **getAllPilots();
-int selectPilot(int pilot);
-int addScore(int playerId, int addedScore);
 Pilots getDriverData(int id);
 int initAllDrivers(Pilots pilots[]);
-extern int driverSelected;
-void savePilot(int id);
-int getPilot();
-char **getAllPilots();
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H

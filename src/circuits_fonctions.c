@@ -7,146 +7,62 @@
 
 // CIRCUIT FUNCTIONS
 
-char ***getAllCircuits() {
+int initAllCircuits(CircuitData circuits[]) {
 
     /*
-    * Permet de récupérer toutes les informations sur tous les circuits
-    * Retourne un tableau de char*** si la récupération est réussie
-    * Retourne NULL si la récupération est échouée
-    */
-
-    if (globalDbConnection.connection == NULL) {
-        return NULL;
-    }
-
-    char query[1000];
-    snprintf(query, sizeof(query), "SELECT * FROM circuits");
-
-    if (mysql_query(globalDbConnection.connection, query) != 0) {
-        fprintf(stderr, "Erreur lors de la requête : %s\n", mysql_error(globalDbConnection.connection));
-        return NULL;
-    }
-
-    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
-
-    if (result == NULL) {
-        fprintf(stderr, "Erreur lors de la récupération des circuits : %s\n", mysql_error(globalDbConnection.connection));
-        return NULL;
-    }
-
-    int num_fields = mysql_num_fields(result); // nombre de colonnes dans le résultat
-
-    char ***circuits = (char ***)malloc((mysql_num_rows(result) + 1) * sizeof(char **));
-    if (circuits == NULL) {
-        fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
-        mysql_free_result(result);
-        return NULL;
-    }
-
-    int i = 0;
-
-    // Parcours des lignes du résultat
-    MYSQL_ROW row;
-    while ((row = mysql_fetch_row(result)) != NULL) {
-        circuits[i] = (char **)malloc(num_fields * sizeof(char *));
-        if (circuits[i] == NULL) {
-            fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
-            mysql_free_result(result);
-            freeCircuits(circuits);
-            return NULL;
-        }
-
-        for (int j = 0; j < num_fields; j++) {
-            circuits[i][j] = strdup(row[j]);
-            if (circuits[i][j] == NULL) {
-                fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
-                mysql_free_result(result);
-                freeCircuits(circuits);
-                return NULL;
-            }
-        }
-        i++;
-    }
-
-    circuits[i] = NULL; // Fin du tableau
-    mysql_free_result(result);
-
-    return circuits;
-}
-
-char **getCircuitsName() {
-
-    /*
-     * Permet de récupérer le nom des circuits
-     * Retourne un tableau de char** si la récupération est réussie
-     * Retourne NULL si la récupération est échouée
+     * Récupère toutes les informations sur tous les circuits et les stocke dans un tableau de CircuitData
+     * Retourne 0 si la récupération est réussie
+     * Retourne 1 si la récupération est échouée
      */
 
-    if (globalDbConnection.connection == NULL) {
-        return NULL;
-    }
+    MYSQL_RES *result = NULL;
 
-    char query[1000];
-    snprintf(query, sizeof(query), "SELECT nom FROM circuits");
+    char *query = (char *)"SELECT * FROM circuits";
 
     if (mysql_query(globalDbConnection.connection, query) != 0) {
         fprintf(stderr, "Erreur lors de la requête : %s\n", mysql_error(globalDbConnection.connection));
-        return NULL;
+        return 1;
     }
 
-    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
+    result = mysql_store_result(globalDbConnection.connection);
 
     if (result == NULL) {
         fprintf(stderr, "Erreur lors de la récupération des circuits : %s\n", mysql_error(globalDbConnection.connection));
-        mysql_free_result(result);
-        return NULL;
-    }
-
-    char **circuits = (char **)malloc((mysql_num_rows(result) + 1) * sizeof(char *));
-
-    if (circuits == NULL) {
-        fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
-        mysql_free_result(result);
-        return NULL;
+        return 1;
     }
 
     int i = 0;
     MYSQL_ROW row;
 
     while ((row = mysql_fetch_row(result)) != NULL) {
-        circuits[i] = strdup(row[0]);
-        if (circuits[i] == NULL) {
-            fprintf(stderr, "Erreur lors de l'allocation mémoire\n");
-            mysql_free_result(result);
-            freeCircuitsName(circuits);
-            return NULL;
-        }
+        circuits[i].circuit_id = atoi(row[0]);
+        strcpy(circuits[i].nom, row[1]);
+        strcpy(circuits[i].pays, row[2]);
+        circuits[i].nombre_de_tours = atoi(row[3]);
+        circuits[i].longueur_circuit = atof(row[4]);
+        circuits[i].longueur_course = atof(row[5]);
+        strcpy(circuits[i].type_circuit, row[6]);
+        circuits[i].niveau_difficulte = atoi(row[7]);
+        circuits[i].usure_pneus = atoi(row[8]);
+        circuits[i].virages_gauche = atoi(row[9]);
+        circuits[i].virages_droite = atoi(row[10]);
+        circuits[i].longueur_ligne_droite = atoi(row[11]);
+        circuits[i].zones_drs = atoi(row[12]);
         i++;
     }
 
-    circuits[i] = NULL;
     mysql_free_result(result);
-
-    freeCircuitsName(circuits);
-    return circuits;
-
+    return 0;
 }
 
-// Free functions
+CircuitData getCircuitData(int id) {
+    /*
+     * Permet de récupérer les données d'un circuit
+     * Retourne le circuit correspondant à l'id
+     */
 
-void freeCircuitsName(char **circuits) {
-    for (int i = 0; circuits[i] != NULL; i++) {
-        free(circuits[i]);
-    }
-    free(circuits);
-}
+    CircuitData circuits[CIRCUITS_NUMBER];
+    initAllCircuits(circuits);
 
-void freeCircuits(char ***circuits) {
-    for (int i = 0; circuits[i] != NULL; i++) {
-        for (int j = 0; circuits[i][j] != NULL; j++) {
-            free(circuits[i][j]);
-        }
-        free(circuits[i]);
-    }
-    free(circuits);
+    return circuits[id];
 }
