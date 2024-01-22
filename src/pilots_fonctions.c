@@ -1,4 +1,7 @@
 #include "../include/pilots_fonctions.h"
+#include "../include/start.h"
+
+int driverSelected;
 
 int initAllDrivers(Pilots pilots[]) {
 
