@@ -18,10 +18,13 @@ Start::Start(QWidget *parent) : QWidget(parent) {
     int leny = globalConfig.height / 6;
     int y = leny;
 
-    char **pilots = getAllPilots();
+    Pilots driversData[DRIVERS_NUMBER];
+    if (initAllDrivers(driversData) == 1) {
+        printf("Erreur lors de la récupération des pilotes\n");
+    }
 
     for (int i = 0; i < 20; i++) {
-        driversButton = createButton(pilots[i], this);
+        driversButton = createButton(driversData[i].nom, this);
         driversButton->setProperty("class", "driversButton");
         driversButton->setGeometry(x, y, globalConfig.width/7 , globalConfig.height / 15);
         x += globalConfig.width / 6;
@@ -29,10 +32,8 @@ Start::Start(QWidget *parent) : QWidget(parent) {
             x = lenx;
             y += leny;
         }
-
         connect(driversButton, &QPushButton::clicked, this, [this, i]() {
             savePilot(i);
-
             onDriverButtonClicked(i);
         });
     }
