@@ -44,8 +44,11 @@ Start::Start(QWidget *parent) : QWidget(parent) {
             x = lenx;
             y += leny;
         }
-        connect(driversButton, &QPushButton::clicked, this, [this, i]() {
+        connect(driversButton, &QPushButton::clicked, this, [this, i, driversData]() {
             savePilot(i);
+            if (addPlayer(driversData[i].nom, 0) == 1) {
+                printf("Erreur lors de l'ajout du joueur\n");
+            }
             onDriverButtonClicked(i);
         });
     }

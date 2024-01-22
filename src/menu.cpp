@@ -127,6 +127,9 @@ void Menu::buttonCoursesBackClick() {
 }
 
 void Menu::buttonCircuitBackClick() {
+    if (removePlayer() == 1) {
+        printf("Erreur lors de la suppression du joueur");
+    }
     stackedWidget->setCurrentWidget(startWidget);
 }
 

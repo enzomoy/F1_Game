@@ -71,7 +71,7 @@ int addPlayer(const char* pilot, int score) {
 }
 
 
-int removePlayer(int id) {
+int removePlayer() {
     /*
     * Permet de supprimer un joueur de la base de données
     * Retourne 0 si la suppression est réussie
@@ -85,27 +85,8 @@ int removePlayer(int id) {
 
     char query[1000];
 
-    // Vérification de l'existence du joueur
-    snprintf(query, sizeof(query), "SELECT * FROM player WHERE id = %d", id);
-
-    if (mysql_query(globalDbConnection.connection, query) != 0) {
-        fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));
-        return 1;
-    }
-
-    MYSQL_RES *result = mysql_store_result(globalDbConnection.connection);
-
-    // Si le joueur n'existe pas
-    if (result == NULL || mysql_num_rows(result) == 0) {
-        mysql_free_result(result);
-        return 2;
-    }
-
-    // Libération des résultats de la première requête SELECT
-    mysql_free_result(result);
-
     // Suppression du joueur
-    snprintf(query, sizeof(query), "DELETE FROM player WHERE id = %d", id);
+    snprintf(query, sizeof(query), "DELETE FROM player");
 
     if (mysql_query(globalDbConnection.connection, query) != 0) {
         fprintf(stderr, "%s\n", mysql_error(globalDbConnection.connection));

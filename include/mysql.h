@@ -24,11 +24,9 @@ extern DbConnectionInfo globalDbConnection;
 // Player prototypes
 int dbConnect(DbConnectionInfo *config);
 int addPlayer(const char* pilot, int score);
-int removePlayer(int id);
+int removePlayer();
 int setScore(int id, int score);
 int getScore(int id);
-char* getLastPilot();
-
 
 // Driver prototypes
 char ***getAllDriversInfo();

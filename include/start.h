@@ -9,6 +9,7 @@
 #include "pilots_fonctions.h"
 #include "circuits_fonctions.h"
 #include "config.h"
+#include "mysql.h"
 #include <QTimer>
 
 class Start : public QWidget {
