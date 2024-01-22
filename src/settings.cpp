@@ -70,9 +70,13 @@ void Settings::buttonApplyClick() {
 
     const char* Xvalue = getXlen().toLatin1().data();
     int X = atoi(Xvalue);
+    if (X < 400){
+        X = 400 ;
+    }
 
     const char* Yvalue = getYlen().toLatin1().data();
     int Y = atoi(Yvalue);
+    if (Y < 400 ) Y = 400;
 
     if( editConfig(&globalConfig,isChecked,X,Y) == 1){
         printf("Erreur de modification du fichier de configuration");

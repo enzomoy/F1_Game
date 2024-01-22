@@ -23,6 +23,7 @@ public slots:
     void buttonApplyClick();
     void buttonBackClick();
 
+
 signals:
     void backClicked();
     void applied();
