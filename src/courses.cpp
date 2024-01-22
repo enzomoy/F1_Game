@@ -37,6 +37,7 @@ Courses::Courses(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *backBoutton = new QVBoxLayout(this);
     backButtonCourses = createButton("Back", this);
     backButtonCourses->setProperty("class", "buttonCoursesBackClick");
+    backButtonCourses->setStyleSheet("background-color: lightcoral;");
     backBoutton->addWidget(backButtonCourses);
     mainlayout->addLayout(backBoutton);
 

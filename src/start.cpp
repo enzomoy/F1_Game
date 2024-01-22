@@ -7,10 +7,19 @@ Start::Start(QWidget *parent) : QWidget(parent) {
 
     label = new QLabel("Select your driver", this);
     label->setProperty("class", "selectDrivers");
-
+    label->setStyleSheet("    text-align: center;\n"
+                         "    margin-bottom: 400px;\n"
+                         "    margin-left: 350%;");
 
     backButton = createButton("Back", this);
     backButton->setProperty("class", "backButton");
+    backButton->setStyleSheet("    padding: 15px 32px;\n"
+                               "    text-align: center;\n"
+                               "    font-size: 16px;\n"
+                               "    margin: 4px 2px;\n"
+                               "    margin-left: 20%;\n"
+                               "    margin-right: 20%;\n"
+                               "    background-color: lightcoral;");
 
     int lenx = globalConfig.width / 10;
     int x = lenx;
@@ -23,10 +32,13 @@ Start::Start(QWidget *parent) : QWidget(parent) {
         printf("Erreur lors de la récupération des pilotes\n");
     }
 
+
     for (int i = 0; i < 20; i++) {
         driversButton = createButton(driversData[i].nom, this);
         driversButton->setProperty("class", "driversButton");
         driversButton->setGeometry(x, y, globalConfig.width/7 , globalConfig.height / 15);
+        driversButton->setStyleSheet("    background-color: grey;\n"
+                                     "    border-radius: 5%;");
         x += globalConfig.width / 6;
         if (x > globalConfig.width - globalConfig.width/6) {
             x = lenx;

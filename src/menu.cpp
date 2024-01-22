@@ -46,6 +46,12 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     startButton = createButton("Select Pilots", menuWidget);
     startButton->setProperty("class", "startButton");
+    startButton->setStyleSheet("    padding: 15px 32px;\n"
+                               "    text-align: center;\n"
+                               "    font-size: 16px;\n"
+                               "    margin: 4px 2px;\n"
+                               "    margin-left: 20%;\n"
+                               "    margin-right: 20%;");
     connect(startButton, &QPushButton::clicked, this, &Menu::buttonStartClick);
 
     settingsButton = createButton("Settings", menuWidget);
@@ -54,6 +60,13 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
 
     exitButton = createButton("Exit", menuWidget);
     exitButton->setProperty("class", "exitButton");
+    exitButton->setStyleSheet("    padding: 15px 32px;\n"
+                              "    text-align: center;\n"
+                              "    font-size: 16px;\n"
+                              "    margin: 4px 2px;\n"
+                              "    margin-left: 20%;\n"
+                              "    margin-right: 20%;\n"
+                              "    background-color: lightcoral;");
     connect(exitButton, &QPushButton::clicked, this, &Menu::buttonExitClick);
 
     menuLayout->addWidget(startButton);
@@ -67,7 +80,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     layout->addWidget(stackedWidget);
 
     ////////////////////////////
-    applyStylesheet("../src/css/menu.css");
+    //applyStylesheet("../src/style.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
@@ -125,6 +138,7 @@ void Menu::buttonStatistiquesClick(){
 
     stackedWidget->setCurrentWidget(statistiquesWidget);
 }
+
 ////////////
 void Menu::buttonCoursesClick() {
 
@@ -152,7 +166,7 @@ void Menu::buttonCoursesInfoBackClick() {
     stackedWidget->removeWidget(circuitInfoWidget);
     delete circuitInfoWidget;
 
-    stackedWidget->setCurrentWidget(circuitWidget);
+    stackedWidget->setCurrentWidget(coursesWidget);
 }
 
 QPushButton* Menu::createButton(const QString &text, QWidget *parent) {

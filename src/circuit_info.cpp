@@ -39,23 +39,21 @@ CircuitType->setProperty("class", "CircuitType");
 CircuitType->setStyleSheet("font-size: 32px; margin-left : 200%;");
 infoCircuit->addWidget(CircuitType);
 
-CircuitLeft = new QLabel(QString("Virags gauche : %1").arg(circuits.virages_gauche));
+CircuitLeft = new QLabel(QString("Virages gauche : %1").arg(circuits.virages_gauche));
 CircuitLeft->setProperty("class", "CircuitLeft");
 CircuitLeft->setStyleSheet("font-size: 32px; margin-left : 200%;");
 infoCircuit->addWidget(CircuitLeft);
 
-CircuitRight = new QLabel(QString("Virags gauche : %1").arg(circuits.virages_droite));
+CircuitRight = new QLabel(QString("Virages gauche : %1").arg(circuits.virages_droite));
 CircuitRight->setProperty("class", "CircuitRight");
 CircuitRight->setStyleSheet("font-size: 32px; margin-left : 200%;");
 infoCircuit->addWidget(CircuitRight);
 
-CircuitDrs = new QLabel( "nombre de zone drs: " + QString::number( circuits.zones_drs), this  );
+CircuitDrs = new QLabel( "Nombre de zone drs : " + QString::number( circuits.zones_drs), this  );
 CircuitDrs->setProperty("class", "CircuitDrs");
 CircuitDrs->setStyleSheet("font-size: 32px; margin-left : 200%;");
 infoCircuit->addWidget(CircuitDrs);
 mainLayout->addLayout(infoCircuit);
-
-
 
 ///////////////////
 
@@ -63,6 +61,13 @@ mainLayout->addLayout(infoCircuit);
 
     backButtonCircuitInfo = createButton("Back", this);
     backButtonCircuitInfo->setProperty("class", "backButtonCircuitInfo");
+    backButtonCircuitInfo->setStyleSheet("    padding: 15px 32px;\n"
+                                          "    text-align: center;\n"
+                                          "    font-size: 16px;\n"
+                                          "    margin: 4px 2px;\n"
+                                          "    margin-left: 20%;\n"
+                                          "    margin-right: 20%;\n"
+                                          "    background-color: lightcoral;");
     backButton->addWidget(backButtonCircuitInfo);
     mainLayout->addLayout(backButton);
 

@@ -11,6 +11,9 @@ Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
 
     PilotsName = new QLabel(selectedPilot.nom, this);
     PilotsName->setProperty("class", "PilotsName");
+    PilotsName->setStyleSheet("    font-size: 30px;\n"
+                              "    margin-left: 280%;\n"
+                              "    margin-bottom: 200%;");
     nameLayout->addWidget(PilotsName);
     mainLayout->addLayout(nameLayout);
 
@@ -58,6 +61,13 @@ Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *buttonLayout = new QVBoxLayout();
     QPushButton *backButtonStatistiques = new QPushButton("Back", this);
     backButtonStatistiques->setProperty("class", "backButtonStatistiques");
+    backButtonStatistiques->setStyleSheet("    padding: 15px 32px;\n"
+                                          "    text-align: center;\n"
+                                          "    font-size: 16px;\n"
+                                          "    margin: 4px 2px;\n"
+                                          "    margin-left: 20%;\n"
+                                          "    margin-right: 20%;\n"
+                                          "    background-color: lightcoral;");
     buttonLayout->addWidget(backButtonStatistiques);
     mainLayout->addLayout(buttonLayout);
 
