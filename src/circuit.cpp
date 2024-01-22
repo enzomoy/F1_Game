@@ -1,27 +1,64 @@
+// circuit.cpp
 #include "../include/circuit.h"
+#include <QFrame>
 
 Circuit::Circuit(QWidget *parent) : QWidget(parent) {
+
     layout = new QVBoxLayout(this);
 
-    circuit1 = createButton(" ", this);
-    circuit1->setProperty("class", "circuit1");
-    circuit1->setGeometry(10, 50, 180 , 300);
+    int id = getPilot();
+    Pilots selectedPilot = getDriverData(id);
 
-    circuit2 = createButton(" ", this);
-    circuit2->setProperty("class", "circuit2");
-    circuit2->setGeometry(200, 50, 180 , 300);
+    PilotsName = new QLabel(selectedPilot.nom, this);
+    PilotsName->setProperty("class", "PilotsName");
+    PilotsName->setStyleSheet("    font-size: 30px;\n"
+                                 "    margin-left: 280%;\n"
+                                 "    margin-bottom: 200%;");
+    layout->addWidget(PilotsName);
 
-    circuit3 = createButton(" ", this);
-    circuit3->setProperty("class", "circuit3");
-    circuit3->setGeometry(390, 50, 180 , 300);
+    buttonStatistiques = createButton("Statistiques", this);
+    buttonStatistiques->setProperty("class", "buttonStatistiques");
+    buttonStatistiques->setStyleSheet("    padding: 15px 32px;\n"
+                                      "    text-align: center;\n"
+                                      "    font-size: 16px;\n"
+                                      "    margin: 4px 2px;\n"
+                                      "    margin-left: 80%;\n"
+                                      "    margin-right: 80%;\n"
+                                      "    margin-bottom: 100%;");
+    layout->addWidget(buttonStatistiques);
+
+    buttonCourses = createButton("Courses", this);
+    buttonCourses->setProperty("class", "buttonCourses");
+    buttonCourses->setStyleSheet("    padding: 15px 32px;\n"
+                                 "    text-align: center;\n"
+                                 "    font-size: 16px;\n"
+                                 "    margin: 4px 2px;\n"
+                                 "    margin-left: 80%;\n"
+                                 "    margin-right: 80%;");
+    layout->addWidget(buttonCourses);
 
     backButtonCircuit = createButton("Back", this);
     backButtonCircuit->setProperty("class", "buttonCircuitBackClick");
+    backButtonCircuit->setStyleSheet("    padding: 15px 32px;\n"
+                                     "    text-align: center;\n"
+                                     "    font-size: 16px;\n"
+                                     "    margin: 4px 2px;\n"
+                                     "    margin-left: 20%;\n"
+                                     "    margin-right: 20%;\n"
+                                     "    background-color: lightcoral;");
+    layout->addWidget(backButtonCircuit);
 
     connect(backButtonCircuit, &QPushButton::clicked, this, &Circuit::buttonCircuitBackClick);
+    connect(buttonStatistiques, &QPushButton::clicked, this, &Circuit::buttonStatistiquesClick);
+
+    connect(buttonCourses, &QPushButton::clicked, this, &Circuit::buttonCoursesClick);
 }
 
 QPushButton* Circuit::createButton(const QString &text, QWidget *parent) {
     QPushButton *button = new QPushButton(text, parent);
     return button;
+}
+
+void Circuit::setSelectedDriverId(int driverId) {
+    selectedDriverId = driverId;
 }

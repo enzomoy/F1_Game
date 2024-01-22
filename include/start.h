@@ -1,3 +1,4 @@
+// start.h
 #ifndef START_H
 #define START_H
 
@@ -7,14 +8,18 @@
 #include <QPushButton>
 #include "pilots_fonctions.h"
 #include "circuits_fonctions.h"
+#include "config.h"
+#include <QTimer>
 
 class Start : public QWidget {
 Q_OBJECT
 public:
     explicit Start(QWidget *parent = nullptr);
 
+
 signals:
     void backClicked();
+    void driverButtonClicked(int driverIndex);
     void driverSelected(int driverIndex);
 
 private slots:

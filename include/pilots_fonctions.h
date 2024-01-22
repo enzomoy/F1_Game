@@ -7,9 +7,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-char **getAllPilots();
-void freePilots(char** pilots);
-int selectPilot(int pilot);
-int addScore(int playerId, int addedScore);
+#define DRIVERS_NUMBER 20
+
+typedef struct Pilots {
+    char nom[20];
+    int courses;
+    int victoires;
+    int deuxiemes;
+    int troisiemes;
+    int podiums;
+    int poles;
+    int laps;
+    float points;
+} Pilots;
+
+void savePilot(int id);
+int getPilot();
+Pilots getDriverData(int id);
+int initAllDrivers(Pilots pilots[]);
+
+
+
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H

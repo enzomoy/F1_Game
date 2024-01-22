@@ -1,0 +1,135 @@
+.startButton {
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.exitButton{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.backButton{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.selectDrivers{
+    text-align: center;
+    margin-bottom: 400px;
+    margin-left: 350%;
+
+}
+
+.driversButton{
+    background-color: grey;
+    border-radius: 5%;
+}
+
+.buttonCircuitBackClick{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.Appliquer{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.Fullscreen{
+    margin-top: 20%;
+}
+
+.printX{
+    margin-bottom: 20%;
+}
+
+.Xinput{
+    margin-bottom: 50%;
+}
+
+.printY{
+    margin-bottom: 20%;
+}
+
+.Yinput{
+    margin-bottom: 50%;
+}
+
+.backButtonStatistiques{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.PilotsName{
+    font-size: 30px;
+    margin-left: 280%;
+    margin-bottom: 200%;
+}
+
+.buttonStatistiques{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 80%;
+    margin-right: 80%;
+    margin-bottom: 100%;
+}
+
+.buttonCourses{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 80%;
+    margin-right: 80%;
+}
+
+.buttonCoursesBackClick{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}
+
+.backButtonCircuitInfo{
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: lightcoral;
+}

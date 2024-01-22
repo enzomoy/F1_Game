@@ -5,8 +5,12 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
-
-class Menu;
+#include "config.h"
+#include "pilots_fonctions.h"
+#include "start.h"
+#include "settings.h"
+#include "statistiques.h"
+#include "courses.h"
 
 class Circuit : public QWidget {
 Q_OBJECT
@@ -15,15 +19,21 @@ public:
 
 signals:
     void buttonCircuitBackClick();
+    void buttonStatistiquesClick();
+    void buttonCoursesClick();
 
-private slots:
+public slots:
+    void setSelectedDriverId(int driverId);
 
 private:
     QVBoxLayout *layout;
-    QPushButton *circuit1;
-    QPushButton *circuit2;
-    QPushButton *circuit3;
+    QVBoxLayout *PilotsInfo;
     QPushButton *backButtonCircuit;
+    QPushButton *buttonCourses;
+    QPushButton *buttonStatistiques;
+    QLabel *PilotsName;
+    int selectedDriverId;
+
     QPushButton* createButton(const QString &text, QWidget *parent);
 };
 
