@@ -31,3 +31,5 @@ target_link_libraries(F1_Game PRIVATE Qt6::Widgets)
 add_custom_command(TARGET F1_Game POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/ext/bin/QT $<TARGET_FILE_DIR:F1_Game>)
+
+set_target_properties(${NAME_PROJECT} PROPERTIES WIN32_EXECUTABLE TRUE)
