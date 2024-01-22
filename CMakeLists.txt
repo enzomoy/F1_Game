@@ -15,7 +15,7 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 include_directories("ext/include")
 link_directories("ext/lib")
 
-file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c" "src/css/*.css" "include/*.h")
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c" "resources/styles/*.css" "include/*.h")
 add_executable(F1_Game ${SOURCES}
         src/settings.cpp
         src/statistiques.cpp

@@ -67,7 +67,7 @@ Menu::Menu(QWidget *parent) : QWidget(parent) {
     layout->addWidget(stackedWidget);
 
     ////////////////////////////
-    applyStylesheet("../src/css/menu.css");
+    applyStylesheet("../resources/styles/style.css");
 
     connect(startWidget, &Start::backClicked, this, &Menu::buttonBackClick);
     connect(startWidget, &Start::driverSelected, this, &Menu::onDriverSelected);
