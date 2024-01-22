@@ -1,5 +1,8 @@
 CREATE DATABASE IF NOT EXISTS `f1_project`;
 
+CREATE USER IF NOT EXISTS 'user'@'localhost' IDENTIFIED BY 'Azerty11';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';
+
 USE `f1_project`;
 
 CREATE TABLE IF NOT EXISTS `f1_project`.`player` (
