@@ -58,6 +58,12 @@ Start::Start(QWidget *parent) : QWidget(parent) {
     if (&QPushButton::clicked) {
         connect(backButton, &QPushButton::clicked, this, &Start::buttonBackClick);
     }
+
+//    const char *url = "http://ergast.com/api/f1/2019/drivers.json";
+//    if (perform_request(url) == 1) {
+//        printf("Erreur lors de la requête CURL\n");
+//    }
+
 }
 void Start::buttonBackClick() {
     emit backClicked();

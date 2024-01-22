@@ -10,6 +10,7 @@
 #include "circuits_fonctions.h"
 #include "config.h"
 #include "mysql.h"
+#include "curl_fonctions.h"
 #include <QTimer>
 
 class Start : public QWidget {
