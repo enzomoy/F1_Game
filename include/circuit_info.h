@@ -1,3 +1,7 @@
+/*
+ * Fichier : circuit_info.h
+ * Description: Fichier d'en-tête de circuit_info.cpp
+ */
 
 #ifndef CIRCUIT_INFO_H
 #define CIRCUIT_INFO_H

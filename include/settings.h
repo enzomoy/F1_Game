@@ -1,3 +1,8 @@
+/*
+ * Fichier : settings.h
+ * Description: Fichier d'en-tête de settings.cpp
+ */
+
 #ifndef SETTINGS_H
 #define SETTINGS_H
 

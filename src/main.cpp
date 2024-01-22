@@ -1,3 +1,8 @@
+/*
+ * Fichier : main.cpp
+ * Description: Fichier source de main.h
+ */
+
 #include <iostream>
 #include <curl/curl/curl.h>
 #include <mysql/mysql.h>

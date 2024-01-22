@@ -1,3 +1,8 @@
+/*
+ * Fichier : statistiques.h
+ * Description: Fichier d'en-tête de statistiques.cpp
+ */
+
 #ifndef STATISTIQUES_H
 #define STATISTIQUES_H
 

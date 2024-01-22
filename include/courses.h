@@ -1,3 +1,8 @@
+/*
+ * Fichier : courses.h
+ * Description: Fichier d'en-tête de courses.cpp
+ */
+
 #ifndef COURSES_H
 #define COURSES_H
 

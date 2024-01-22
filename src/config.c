@@ -1,6 +1,7 @@
-//
-// Created by enzom on 29/12/2023.
-//
+/*
+ * Fichier : config.c
+ * Description: Fichier source de config.h
+ */
 
 #include "../include/config.h"
 

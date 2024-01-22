@@ -1,6 +1,7 @@
-//
-// Created by enzom on 03/01/2024.
-//
+/*
+ * Fichier : mysql.c
+ * Description: Fichier source de mysql.h
+ */
 
 #include "../include/mysql.h"
 

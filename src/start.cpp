@@ -1,6 +1,10 @@
+/*
+ * Fichier : start.cpp
+ * Description: Fichier source de start.h
+ */
+
 #include "../include/start.h"
 #include "../include/pilots_fonctions.h"
-
 
 Start::Start(QWidget *parent) : QWidget(parent) {
     layout = new QVBoxLayout(this);

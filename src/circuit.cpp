@@ -1,4 +1,8 @@
-// circuit.cpp
+/*
+ * Fichier : circuit.cpp
+ * Description: Fichier source de circuit.h
+ */
+
 #include "../include/circuit.h"
 #include <QFrame>
 

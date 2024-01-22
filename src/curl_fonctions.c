@@ -1,6 +1,7 @@
-//
-// Created by enzom on 22/01/2024.
-//
+/*
+ * Fichier : curl_fonctions.c
+ * Description: Fichier source de curl_fonctions.h
+ */
 
 #include "../include/curl_fonctions.h"
 

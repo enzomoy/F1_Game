@@ -1,4 +1,8 @@
-// Dans le fichier config.h
+/*
+ * Fichier : config.h
+ * Description: Fichier d'en-tête de config.c
+ */
+
 #ifndef F1_PROJECT_CONFIG_H
 #define F1_PROJECT_CONFIG_H
 

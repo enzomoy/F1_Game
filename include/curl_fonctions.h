@@ -1,6 +1,7 @@
-//
-// Created by enzom on 22/01/2024.
-//
+/*
+ * Fichier : curl_fonctions.h
+ * Description: Fichier d'en-tête de curl_fonctions.c
+ */
 
 #ifndef F1_GAME_CURL_FONCTIONS_H
 #define F1_GAME_CURL_FONCTIONS_H

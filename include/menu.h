@@ -1,3 +1,8 @@
+/*
+ * Fichier : menu.h
+ * Description: Fichier d'en-tête de menu.cpp
+ */
+
 #ifndef MENU_H
 #define MENU_H
 

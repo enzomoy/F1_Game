@@ -1,3 +1,8 @@
+/*
+ * Fichier : settings.cpp
+ * Description: Fichier source de settings.h
+ */
+
 #include "../include/settings.h"
 
 Settings::Settings(QWidget *parent) : QWidget(parent) {

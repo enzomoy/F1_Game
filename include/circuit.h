@@ -1,3 +1,8 @@
+/*
+ * Fichier : circuit.h
+ * Description: Fichier d'en-tête de circuit.cpp
+ */
+
 #ifndef CIRCUIT_H
 #define CIRCUIT_H
 

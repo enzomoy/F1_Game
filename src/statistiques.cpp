@@ -1,3 +1,8 @@
+/*
+ * Fichier : statistiques.cpp
+ * Description: Fichier source de statistiques.h
+ */
+
 #include "../include/statistiques.h"
 
 Statistiques::Statistiques(QWidget *parent) : QWidget(parent) {

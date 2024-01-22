@@ -1,3 +1,8 @@
+/*
+ * Fichier : pilotes_fonctions.h
+ * Description: Fichier d'en-tête de pilotes_fonctions.c
+ */
+
 #ifndef F1_PROJECT_PILOTS_FUNCTIONS_H
 #define F1_PROJECT_PILOTS_FUNCTIONS_H
 

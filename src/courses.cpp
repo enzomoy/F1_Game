@@ -1,7 +1,11 @@
+/*
+ * Fichier : courses.cpp
+ * Description: Fichier source de courses.h
+ */
+
 #include "../include/courses.h"
 #include "../include/circuit_info.h"
 #include <QFrame>
-
 
 Courses::Courses(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *mainlayout = new QVBoxLayout(this);

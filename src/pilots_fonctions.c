@@ -1,5 +1,9 @@
+/*
+ * Fichier : pilots_fonctions.c
+ * Description: Fichier source de pilots_fonctions.h
+ */
+
 #include "../include/pilots_fonctions.h"
-#include "../include/start.h"
 
 int driverSelected;
 

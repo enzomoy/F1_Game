@@ -1,6 +1,7 @@
-//
-// Created by enzom on 06/01/2024.
-//
+/*
+ * Fichier : circuits_fonctions.c
+ * Description: Fichier source de circuits_fonctions.h
+ */
 
 #include "../include/circuits_fonctions.h"
 int CircuitSelected;

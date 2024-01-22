@@ -1,3 +1,8 @@
+/*
+ * Fichier : menu.cpp
+ * Description: Fichier source de menu.h
+ */
+
 #include "../include/menu.h"
 
 Menu::Menu(QWidget *parent) : QWidget(parent) {

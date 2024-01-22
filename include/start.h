@@ -1,4 +1,8 @@
-// start.h
+/*
+ * Fichier : start.h
+ * Description: Fichier d'en-tête de start.cpp
+ */
+
 #ifndef START_H
 #define START_H
 

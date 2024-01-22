@@ -1,3 +1,8 @@
+/*
+ * Fichier : circuit_info.cpp
+ * Description: Fichier source de circuit_info.h
+ */
+
 #include "../include/circuit_info.h"
 
 CircuitInfo::CircuitInfo(QWidget *parent) : QWidget(parent) {

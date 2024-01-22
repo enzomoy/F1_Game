@@ -1,6 +1,7 @@
-//
-// Created by enzom on 06/01/2024.
-//
+/*
+ * Fichier : circuits_fonctions.h
+ * Description: Fichier d'en-tête de circuits_fonctions.c
+ */
 
 #ifndef F1_GAME_CIRCUITS_FONCTIONS_H
 #define F1_GAME_CIRCUITS_FONCTIONS_H

@@ -1,6 +1,7 @@
-//
-// Created by enzom on 03/01/2024.
-//
+/*
+ * Fichier : mysql.h
+ * Description: Fichier d'en-tête de mysql.c
+ */
 
 #ifndef F1_GAME_MYSQL_H
 #define F1_GAME_MYSQL_H
@@ -31,7 +32,6 @@ int getScore(int id);
 // Driver prototypes
 char ***getAllDriversInfo();
 void freeDriversInfo(char ***drivers);
-char **getAllDriversName();
 void freeDriversName(char **drivers);
 
 #endif //F1_GAME_MYSQL_H
