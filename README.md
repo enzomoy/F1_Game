@@ -3,20 +3,17 @@
 
 
 # Présentation
-Le projet F1 manager est un jeux de simulation de gestion des voiture de Formule 1 avec la possibilité de manager la voiture sélectionnée par l’utilisateur à sa guise avec la gestion des pneumatique , temps au tours et par secteur , planification des arrêts au stand et d’autre encore
-
-# Gameplay
-L'interface graphique est créée à l'aide de la bibliothèque SDL. La sécurité des données est garantie par l'utilisation d'OpenSSL pour les communications sécurisées, tandis que la gestion de la base de données repose sur mySQL. Un système de classement sera disponible en fonction des nombres de victoires d’un joueur . Le jeux n’a pas pour but d’afficher une vue du pilote mais un suivie numérique de la course 
-Pour simplifier l'installation, le projet inclut un 'installer avec Inno Setup qui configure rapidement l'application sur le système de l'utilisateur. De plus, le projet inclura la librairie curl afin de réaliser des requêtes. En résumé, le projet F1 manager offre une expérience de simulation virtuelle qui devra se montrer la plus complète possible.
+Le programme F1 Game a pour but de retranscrire de manière claire des statistiques à propos de la Formule 1 durant l’année 2021.
+En effet, il est possible d’obtenir de multiples informations sur les circuits et les pilotes ayant participé aux différents Grand Prix.
+Ce projet nous permet d’analyser les différentes données associées à cette année 2021 mais aussi un véritable entraînement à la création d'applications lourdes.
 
 # Résumé des bibliothèques : 
 - Qt
 - MySQL
 - CURL
-- OpenSSL
 
 # Résumé des fonctionnalitées : 
-Interface graphique
-Connexion et inscription des utilisateurs sécurisé
-différents choix de circuit
-Gestion des cours ( type d'appuis aérodynamique , changements de pneumatique , et suivie des chronos ) 
+- Interface graphique avec Qt
+- Affichage des statistiques des pilotes en 2021
+- Affichage des données associées aux circuits en 2021
+- Gestion d'un fichier de configuration
