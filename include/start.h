@@ -9,11 +9,13 @@
 #include "pilots_fonctions.h"
 #include "circuits_fonctions.h"
 #include "config.h"
+#include <QTimer>
 
 class Start : public QWidget {
 Q_OBJECT
 public:
     explicit Start(QWidget *parent = nullptr);
+
 
 signals:
     void backClicked();

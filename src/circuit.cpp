@@ -6,15 +6,12 @@ Circuit::Circuit(QWidget *parent) : QWidget(parent) {
 
     layout = new QVBoxLayout(this);
 
-    int id = selectedDriverId;
+    int id = getPilot();
     Pilots selectedPilot = getDriverData(id);
-    StockId(id);
-    qDebug() << "Id du pilots : " << GetId();
 
     PilotsName = new QLabel(selectedPilot.nom, this);
     PilotsName->setProperty("class", "PilotsName");
     layout->addWidget(PilotsName);
-
 
     buttonStatistiques = createButton("Statistiques", this);
     buttonStatistiques->setProperty("class", "buttonStatistiques");
@@ -42,5 +39,3 @@ QPushButton* Circuit::createButton(const QString &text, QWidget *parent) {
 void Circuit::setSelectedDriverId(int driverId) {
     selectedDriverId = driverId;
 }
-
-
