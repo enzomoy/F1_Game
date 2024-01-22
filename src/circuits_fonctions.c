@@ -3,7 +3,7 @@
 //
 
 #include "../include/circuits_fonctions.h"
-
+int CircuitSelected;
 
 // CIRCUIT FUNCTIONS
 
@@ -65,4 +65,13 @@ CircuitData getCircuitData(int id) {
     initAllCircuits(circuits);
 
     return circuits[id];
+
+}
+
+void saveCirsuit(int id) {
+    CircuitSelected = id;
+}
+
+int getCircuit() {
+    return CircuitSelected;
 }

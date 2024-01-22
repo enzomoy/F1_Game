@@ -21,7 +21,12 @@ typedef struct Pilots {
     float points;
 } Pilots;
 
+void savePilot(int id);
+int getPilot();
 Pilots getDriverData(int id);
 int initAllDrivers(Pilots pilots[]);
+
+
+
 
 #endif //F1_PROJECT_PILOTS_FUNCTIONS_H

@@ -3,6 +3,7 @@
 
 int driverSelected;
 
+
 int initAllDrivers(Pilots pilots[]) {
 
     /*
@@ -60,3 +61,14 @@ Pilots getDriverData(int id) {
 
     return pilotes[id];
 }
+
+void savePilot(int id) {
+    driverSelected = id;
+}
+
+int getPilot() {
+    return driverSelected;
+}
+
+
+

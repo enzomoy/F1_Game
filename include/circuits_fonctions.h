@@ -31,5 +31,7 @@ typedef struct CircuitData {
 // Circuit prototypes
 int initAllCircuits(CircuitData circuits[]);
 CircuitData getCircuitData(int id);
+void saveCirsuit(int id);
+int getCircuit();
 
 #endif //F1_GAME_CIRCUITS_FONCTIONS_H
