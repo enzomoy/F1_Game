@@ -19,5 +19,5 @@ Ce projet nous permet d’analyser les différentes données associées à cette
 - Gestion d'un fichier de configuration
 
 # Prérequis :
-    -   Avoir MySQL database
-    -   Exécuter le script init.sql à la racine du projet 
+- Avoir MySQL database
+- Exécuter le script init.sql à la racine du projet 
