@@ -17,3 +17,7 @@ Ce projet nous permet d’analyser les différentes données associées à cette
 - Affichage des statistiques des pilotes en 2021
 - Affichage des données associées aux circuits en 2021
 - Gestion d'un fichier de configuration
+
+# Prérequis :
+    -   Avoir MySQL database
+    -   Exécuter le script init.sql à la racine du projet 
